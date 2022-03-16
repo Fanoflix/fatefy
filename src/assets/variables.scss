@@ -1,0 +1,56 @@
+// ____> Color Palette
+$gray: #fafafa;
+$primary: #009b00;
+$primary-2: #003806;
+$secondary-light: #d3d3d3;
+$secondary-dark: #373737;
+$danger: #dd0000;
+$important: #007edf;
+
+$black: #1d1d1d;
+$background-black: $black;
+$black-soft: #222222;
+$black-mute: #3a3a3a;
+
+$white: #e6e6e6;
+$background-white: white;
+$white-soft: #bbbbbb;
+$white-mute: #878787;
+
+$color-border-light-1: #dadada;
+$color-border-light-2: #292929;
+$color-border-dark-1: #b6b6b6;
+$color-border-dark-2: #616161;
+
+// ____> Semantic color variables for use in components
+
+// light theme
+$color-background: $background-white;
+$color-background-soft: $white-soft;
+$color-background-mute: $white-mute;
+
+$color-border-important: $important;
+$color-border: $color-border-light-1;
+$color-border-hover: $color-border-light-2;
+
+$heading: $black;
+$text: $black-soft;
+$text-mute: $black-mute;
+
+// dark theme
+$color-background-dark: $background-black;
+$color-background-soft-dark: $black-soft;
+$color-background-mute-dark: $black-mute;
+
+$color-border-important-dark: $important;
+$color-border-dark: $color-border-dark-1;
+$color-border-hover-dark: $color-border-dark-2;
+
+$heading-dark: $white;
+$text-dark: $white-soft;
+$text-mute-dark: $white-mute;
+
+// transition variables
+$text-and-bg-trans-time: 0.25s;
+
+$btn-border-size: 2px;

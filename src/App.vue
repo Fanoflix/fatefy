@@ -1,34 +1,64 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "@/components/HelloWorld.vue";
-</script>
-
 <template>
   <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
+    <h1>Test Heading</h1>
+    <p>Test Text!</p>
   </header>
+
+  <f-button type="secondary" size="sm" rounded @click="changeTheme"
+    >Toggle theme</f-button
+  >
 
   <RouterView />
 </template>
 
+<script setup>
+import FButton from "./components/FButton.vue";
+import { RouterView } from "vue-router";
+import { useThemeStore } from "./stores/theme.js";
+// import { storeToRefs } from "pinia";
+import { onBeforeMount } from "vue";
+
+// TODO: Extract this snippet wherever you implement the 'Switch Theme' button
+
+const themeStore = useThemeStore();
+let body = document.querySelector("body");
+// const { isDark } = storeToRefs(themeStore);
+// const { changeTheme } = mapActions(useThemeStore, ["changeTheme"]);
+const { changeTheme, setIsDark } = themeStore; // same thing as the above line
+
+onBeforeMount(() => {
+  let storedIsDark = JSON.parse(localStorage.getItem("isDark"));
+  setIsDark(storedIsDark);
+  if (storedIsDark) body.classList.add("dark");
+  else body.classList.remove("dark");
+});
+
+// changing Body's background color
+themeStore.$subscribe((_, state) => {
+  if (state.isDark) {
+    body.classList.add("dark");
+  } else {
+    body.classList.remove("dark");
+  }
+});
+
+// TODO =========================================== END ===========
+</script>
+
 <style lang="scss">
-@import "@/assets/base.css";
 @import "@/assets/variables.scss";
+@import "@/assets/base-styling.scss";
+@include base-styling;
+
+body {
+  &.dark {
+    background: $color-background-dark;
+    color: $text-dark;
+    h1 {
+      color: $heading-dark;
+    }
+  }
+}
 
 #app {
   max-width: 1280px;
@@ -36,91 +66,5 @@ import HelloWorld from "@/components/HelloWorld.vue";
   padding: 2rem;
 
   font-weight: normal;
-}
-
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
 }
 </style>

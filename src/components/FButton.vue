@@ -72,10 +72,10 @@ button {
   font-weight: 500;
   cursor: pointer;
 
-  &:hover:not(.dark) {
-    filter: brightness(1.1);
+  &:hover:not(.dark, .disabled) {
+    filter: brightness(0.9);
   }
-  &:hover {
+  &:hover:not(.disabled) {
     filter: brightness(1.2);
   }
 }

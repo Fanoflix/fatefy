@@ -8,7 +8,7 @@
         outlined: outlined,
         caps: caps,
         dark: isDark,
-        disabled: attrs.disabled !== undefined,
+        disabled: $attrs.disabled !== undefined,
       },
     ]"
     v-bind="$attrs"
@@ -20,11 +20,11 @@
 
 <script setup>
 import { storeToRefs } from "pinia";
-import { useAttrs } from "vue";
+// import { useAttrs } from "vue";
 import { useThemeStore } from "../stores/theme.js";
 
 const themeStore = useThemeStore();
-let attrs = useAttrs();
+// let attrs = useAttrs();
 let { isDark } = storeToRefs(themeStore);
 
 const props = defineProps({
@@ -75,7 +75,7 @@ button {
   &:hover:not(.dark, .disabled) {
     filter: brightness(0.9);
   }
-  &:hover:not(.disabled) {
+  &:hover.dark {
     filter: brightness(1.2);
   }
 }
@@ -119,27 +119,31 @@ button {
 }
 .md {
   width: auto;
-  height: 40px;
+  height: 42px;
 
-  padding: 10px 12px;
+  padding: 0px 16px;
   font-size: 14px;
 }
 
 .lg {
   width: auto;
-  height: 46px;
+  height: 52px;
 
-  padding: 16px 20px;
+  padding: 0px 22px;
   font-size: 15px;
 }
 
-// ____> STYLES: rounded, outlined <primary, secondary (dark/light), danger>, caps
+// ____> STYLES:  caps, rounded, outlined <primary, secondary (dark/light), danger>
 .rounded {
   border-radius: 5px;
 }
 
 .caps {
   text-transform: uppercase;
+
+  &.lg {
+    font-size: 14px;
+  }
 }
 
 .outlined.primary {
@@ -188,7 +192,7 @@ button {
 }
 
 .disabled {
-  opacity: 0.3;
+  opacity: 0.4;
   cursor: default !important;
 
   &:hover {

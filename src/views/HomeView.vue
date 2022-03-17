@@ -47,6 +47,20 @@
   </div>
 
   <br />
+  <h3>Caps</h3>
+
+  <div>
+    <f-button caps size="sm" label="Primary" />
+    <f-button type="secondary" caps size="md" label="Secondary" />
+    <f-button type="important" caps size="lg" label="Important" />
+    <f-button type="danger" caps size="lg" label="Danger" />
+    <f-button label="Primary" caps size="sm" outlined />
+    <f-button type="secondary" caps size="md" outlined label="Secondary" />
+    <f-button type="important" caps size="lg" outlined label="Important" />
+    <f-button type="danger" caps size="lg" outlined label="Danger" />
+  </div>
+
+  <br />
   <h3>Disabled</h3>
 
   <div>
@@ -67,13 +81,13 @@ import FButton from "../components/FButton.vue";
 
 <style lang="scss" scoped>
 button {
-  margin: 7px 7px;
+  margin: 4px 7px;
   margin-left: 0;
 }
 
 div {
   display: flex;
   flex-wrap: wrap;
-  max-width: 450px;
+  max-width: 500px;
 }
 </style>

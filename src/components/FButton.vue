@@ -9,10 +9,7 @@
         outlined: outlined,
         caps: caps,
         dark: isDark,
-        disabled:
-          $attrs.disabled !== undefined &&
-          $attrs.disabled !== false &&
-          $attrs.disabled !== 'false', // create computed here
+        disabled: isDisabled,
       },
     ]"
   >
@@ -23,21 +20,16 @@
 
 <script setup>
 import { storeToRefs } from "pinia";
+import { computed, useAttrs } from "vue";
 import { useThemeStore } from "../stores/theme.js";
 
-const themeStore = useThemeStore();
-let { isDark } = storeToRefs(themeStore);
-
 const props = defineProps({
+  // ! Code inside the defineProps() argument cannot access other variables declared in <script setup>, because the entire expression is moved to an outer function scope when compiled.
+
   label: String,
   size: {
     type: String,
     default: "md",
-    // validator: (val) => {
-    //   if (val !== "sm" || val !== "md" || val !== "lg") {
-    //     return "no";
-    //   }
-    // },
   },
   type: {
     type: String,
@@ -56,6 +48,17 @@ const props = defineProps({
     default: false,
   },
 });
+
+const themeStore = useThemeStore();
+let { isDark } = storeToRefs(themeStore);
+const attrs = useAttrs();
+const isDisabled = computed(() => {
+  return (
+    attrs.disabled !== undefined &&
+    attrs.disabled !== false &&
+    attrs.disabled !== "false"
+  );
+});
 </script>
 
 <script>
@@ -73,7 +76,7 @@ button {
   align-items: center;
   justify-content: center;
 
-  border: none;
+  border: $btn-border-size solid transparent;
   font-weight: 400;
   cursor: pointer;
 
@@ -83,9 +86,19 @@ button {
   &:hover.dark:not(.disabled) {
     filter: brightness(1.2);
   }
+
+  // fallback bg color (primary)
+  background: $primary;
+
+  // fallback size (md)
+  width: auto;
+  height: 44px;
+
+  padding: 0px 16px;
+  font-size: 14px;
 }
 
-// types <primary, secondary (dark/light), danger>
+// ____> TYPES <primary, secondary (dark/light), danger>
 .primary {
   background: $primary;
   font-weight: 700;
@@ -153,8 +166,16 @@ button {
 .caps {
   text-transform: uppercase;
 
+  &.sm {
+    font-size: 12px;
+  }
+
+  &.md {
+    font-size: 13px;
+  }
+
   &.lg {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
@@ -188,7 +209,6 @@ button {
   color: $secondary-light;
 }
 
-// .outlined but not .disabled
 .outlined:not(.disabled, .dark) {
   &:hover {
     background: $btn-hover-light-1;

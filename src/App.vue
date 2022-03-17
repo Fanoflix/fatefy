@@ -1,13 +1,5 @@
 <template>
-  <header>
-    <h1>Test Heading</h1>
-    <p>Test Text!</p>
-  </header>
-
-  <f-button type="secondary" size="sm" rounded @click="changeTheme"
-    >Toggle theme</f-button
-  >
-
+  <f-button type="important" label="Change Theme" @click="changeTheme" />
   <RouterView />
 </template>
 
@@ -49,16 +41,6 @@ themeStore.$subscribe((_, state) => {
 @import "@/assets/variables.scss";
 @import "@/assets/base-styling.scss";
 @include base-styling;
-
-body {
-  &.dark {
-    background: $color-background-dark;
-    color: $text-dark;
-    h1 {
-      color: $heading-dark;
-    }
-  }
-}
 
 #app {
   max-width: 1280px;

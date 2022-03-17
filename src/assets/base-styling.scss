@@ -1,11 +1,12 @@
 @import "@/assets/variables.scss";
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Roboto:wght@300;400;500;600;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Roboto:wght@300;400;600;700;900&display=swap");
 
 @mixin base-styling {
   *,
   *::before,
   *::after {
     box-sizing: border-box;
+    // box-sizing:content-box;
     margin: 0;
     padding: 0;
     position: relative;
@@ -25,14 +26,37 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
 
-  h1 {
-    font-family: "Poppins", sans-serif;
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: "Poppins", sans-serif;
+      color: $heading;
+    }
 
-  p {
-    font-family: "Roboto", sans-serif;
+    div,
+    p {
+      font-family: "Roboto", sans-serif;
+      color: $text;
+    }
+
+    &.dark {
+      background: $color-background-dark;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        color: $heading-dark;
+      }
+
+      div,
+      p {
+        color: $text-dark;
+      }
+    }
   }
 
   // Globally applied classes

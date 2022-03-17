@@ -1,5 +1,6 @@
 <template>
   <button
+    v-bind="$attrs"
     :class="[
       type,
       size,
@@ -8,10 +9,12 @@
         outlined: outlined,
         caps: caps,
         dark: isDark,
-        disabled: $attrs.disabled !== undefined,
+        disabled:
+          $attrs.disabled !== undefined &&
+          $attrs.disabled !== false &&
+          $attrs.disabled !== 'false', // create computed here
       },
     ]"
-    v-bind="$attrs"
   >
     <span v-if="props.label">{{ props.label }} </span>
     <span v-else><slot></slot></span>
@@ -20,11 +23,9 @@
 
 <script setup>
 import { storeToRefs } from "pinia";
-// import { useAttrs } from "vue";
 import { useThemeStore } from "../stores/theme.js";
 
 const themeStore = useThemeStore();
-// let attrs = useAttrs();
 let { isDark } = storeToRefs(themeStore);
 
 const props = defineProps({
@@ -32,6 +33,11 @@ const props = defineProps({
   size: {
     type: String,
     default: "md",
+    // validator: (val) => {
+    //   if (val !== "sm" || val !== "md" || val !== "lg") {
+    //     return "no";
+    //   }
+    // },
   },
   type: {
     type: String,
@@ -68,14 +74,13 @@ button {
   justify-content: center;
 
   border: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   cursor: pointer;
 
   &:hover:not(.dark, .disabled) {
-    filter: brightness(0.9);
+    filter: brightness(0.9) contrast(1.1);
   }
-  &:hover.dark {
+  &:hover.dark:not(.disabled) {
     filter: brightness(1.2);
   }
 }
@@ -83,14 +88,21 @@ button {
 // types <primary, secondary (dark/light), danger>
 .primary {
   background: $primary;
-  color: $primary-2;
-  font-weight: 900;
+  font-weight: 700;
+
+  &.primary:not(.dark, .outlined) {
+    color: $color-background;
+  }
+
+  &.primary.dark:not(.outlined) {
+    color: $color-background-dark;
+  }
 }
 
 .danger {
   background: $danger;
   color: $white;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .secondary {
@@ -111,7 +123,7 @@ button {
 // ____> SIZES <sm, md, lg>
 .sm {
   width: auto;
-  height: 32px;
+  height: 30px;
 
   padding: 0px 15px;
   font-size: 13px;
@@ -119,7 +131,7 @@ button {
 }
 .md {
   width: auto;
-  height: 42px;
+  height: 44px;
 
   padding: 0px 16px;
   font-size: 14px;
@@ -127,7 +139,7 @@ button {
 
 .lg {
   width: auto;
-  height: 52px;
+  height: 58px;
 
   padding: 0px 22px;
   font-size: 15px;
@@ -177,22 +189,22 @@ button {
 }
 
 // .outlined but not .disabled
-.outlined:not(.disabled) {
+.outlined:not(.disabled, .dark) {
   &:hover {
-    background: $color-border-light-1;
+    background: $btn-hover-light-1;
     filter: none;
   }
 }
 
 .outlined.dark:not(.disabled) {
   &:hover {
-    background: $color-border-light-2;
+    background: $btn-hover-light-2;
     filter: none;
   }
 }
 
 .disabled {
-  opacity: 0.4;
+  opacity: 0.3;
   cursor: default !important;
 
   &:hover {

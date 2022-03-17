@@ -1,37 +1,79 @@
 <template>
-  <main>Home</main>
+  <main>
+    <h1>Buttons</h1>
+  </main>
+  <p>
+    By default, a button is of 'primary' type, 'md' size, not 'outlined' and not
+    'disabled'
+  </p>
 
-  <f-button size="lg" caps rounded label="Primary"></f-button>
   <br />
+  <h3>Types</h3>
 
-  <f-button
-    type="important"
-    disabled
-    rounded
-    size="sm"
-    label="disabled"
-  ></f-button>
-  <br />
+  <div>
+    <f-button label="Primary" />
+    <f-button type="secondary" label="Secondary" />
+    <f-button type="important" label="Important" />
+    <f-button type="danger" label="Danger" />
+  </div>
 
-  <f-button type="danger" size="md" rounded label="Danger"></f-button>
   <br />
+  <h3>Sizes</h3>
 
-  <f-button
-    outlined
-    type="important"
-    size="lg"
-    rounded
-    label="Important caps"
-  ></f-button>
-  <br />
+  <div>
+    <f-button label="Small Button" size="sm" type="primary"></f-button>
+    <f-button label="Medium Button" size="md" type="secondary"></f-button>
+    <f-button label="Large Button" size="lg" type="important"></f-button>
+  </div>
 
-  <f-button type="secondary" caps size="md" label="Secondary caps"></f-button>
   <br />
+  <h3>Rounded</h3>
 
-  <f-button type="secondary" size="lg" label="Secondary "></f-button>
+  <div>
+    <f-button rounded size="sm" label="Primary" />
+    <f-button rounded size="md" type="secondary" label="Secondary" />
+    <f-button rounded size="lg" type="important" label="Important" />
+    <f-button rounded size="lg" type="danger" label="Danger" />
+  </div>
+
   <br />
+  <h3>Outlined</h3>
+
+  <div>
+    <f-button outlined size="sm" label="Primary" />
+    <f-button outlined size="md" type="secondary" label="Secondary" />
+    <f-button outlined size="lg" type="important" label="Important" />
+    <f-button outlined size="lg" type="danger" label="Danger" />
+  </div>
+
+  <br />
+  <h3>Disabled</h3>
+
+  <div>
+    <f-button :disabled="true" label="Primary" />
+    <f-button disabled type="secondary" label="Secondary" />
+    <f-button disabled type="important" label="Important" />
+    <f-button disabled type="danger" label="Danger" />
+    <f-button :disabled="true" outlined label="Primary" />
+    <f-button disabled outlined type="secondary" label="Secondary" />
+    <f-button disabled outlined type="important" label="Important" />
+    <f-button disabled outlined type="danger" label="Danger" />
+  </div>
 </template>
 
 <script setup>
 import FButton from "../components/FButton.vue";
 </script>
+
+<style lang="scss" scoped>
+button {
+  margin: 7px 7px;
+  margin-left: 0;
+}
+
+div {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 450px;
+}
+</style>

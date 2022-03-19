@@ -13,7 +13,7 @@
       },
     ]"
   >
-    <span v-if="props.label">{{ props.label }} </span>
+    <span v-if="label">{{ label }} </span>
     <span v-else><slot></slot></span>
   </button>
 </template>
@@ -21,7 +21,7 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { computed, useAttrs } from "vue";
-import { useThemeStore } from "../stores/theme.js";
+import { useThemeStore } from "../../stores/theme.js";
 
 const props = defineProps({
   // ! Code inside the defineProps() argument cannot access other variables declared in <script setup>, because the entire expression is moved to an outer function scope when compiled.
@@ -136,7 +136,7 @@ button {
 // ____> SIZES <sm, md, lg>
 .sm {
   width: auto;
-  height: 30px;
+  height: 38px;
 
   padding: 0px 15px;
   font-size: 13px;
@@ -144,7 +144,7 @@ button {
 }
 .md {
   width: auto;
-  height: 44px;
+  height: 48px;
 
   padding: 0px 16px;
   font-size: 14px;
@@ -158,7 +158,7 @@ button {
   font-size: 15px;
 }
 
-// ____> STYLES:  caps, rounded, outlined <primary, secondary (dark/light), danger>
+// ____> STYLES:  caps, rounded, transparent, outlined <primary, secondary (dark/light), danger>
 .rounded {
   border-radius: 5px;
 }

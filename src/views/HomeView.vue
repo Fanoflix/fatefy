@@ -43,7 +43,7 @@
     <f-button outlined size="sm" label="Primary" />
     <f-button outlined size="md" type="secondary" label="Secondary" />
     <f-button outlined size="lg" type="important" label="Important" />
-    <f-button outlined size="lg" type="danger" label="Danger" />
+    <f-button outlined rounded size="lg" type="danger" label="Danger" />
   </div>
 
   <br />
@@ -53,11 +53,11 @@
     <f-button caps size="sm" label="Primary" />
     <f-button type="secondary" caps size="md" label="Secondary" />
     <f-button type="important" caps size="lg" label="Important" />
-    <f-button type="danger" caps size="lg" label="Danger" />
+    <f-button type="danger" rounded caps size="lg" label="Danger" />
     <f-button label="Primary" caps size="sm" outlined />
     <f-button type="secondary" caps size="md" outlined label="Secondary" />
     <f-button type="important" caps size="lg" outlined label="Important" />
-    <f-button type="danger" caps size="lg" outlined label="Danger" />
+    <f-button type="danger" rounded caps size="lg" outlined label="Danger" />
   </div>
 
   <br />
@@ -76,7 +76,7 @@
 </template>
 
 <script setup>
-import FButton from "../components/FButton.vue";
+import FButton from "../components/button/FButton.vue";
 </script>
 
 <style lang="scss" scoped>

@@ -1,10 +1,25 @@
 <template>
   <f-button type="important" label="Change Theme" @click="changeTheme" />
+  <br />
+
+  <div class="nav">
+    <FButton
+      type="secondary"
+      label="See Button Component"
+      @click="$router.push('/')"
+    />
+
+    <FButton
+      type="secondary"
+      label="See Input Component"
+      @click="$router.push('/inputShowcase')"
+    />
+  </div>
   <RouterView />
 </template>
 
 <script setup>
-import FButton from "./components/FButton.vue";
+import FButton from "./components/button/FButton.vue";
 import { RouterView } from "vue-router";
 import { useThemeStore } from "./stores/theme.js";
 // import { storeToRefs } from "pinia";
@@ -20,12 +35,13 @@ const { changeTheme, setIsDark } = themeStore; // same thing as the above line
 
 onBeforeMount(() => {
   let storedIsDark = JSON.parse(localStorage.getItem("isDark"));
-  setIsDark(storedIsDark);
-  if (storedIsDark) body.classList.add("dark");
-  else body.classList.remove("dark");
+  if (storedIsDark) {
+    body.classList.add("dark");
+    setIsDark(storedIsDark);
+  }
 });
 
-// changing Body's background color
+// changing Body's background color according to isDark in store theme.js
 themeStore.$subscribe((_, state) => {
   if (state.isDark) {
     body.classList.add("dark");
@@ -48,5 +64,10 @@ themeStore.$subscribe((_, state) => {
   padding: 2rem;
 
   font-weight: normal;
+}
+
+.nav {
+  display: flex;
+  gap: 5px;
 }
 </style>

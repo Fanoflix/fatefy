@@ -1,16 +1,17 @@
 <template>
-  <div class="control" :class="[rootClasses, { dark: isDark }]">
-    <p id="input-label">
+  <div class="input-control" :class="[rootClasses, { dark: isDark }]">
+    <p class="input-label">
       {{ label }}
     </p>
 
     <input
       v-if="type !== 'textarea'"
-      ref="input"
       :type="validatedType"
+      ref="input"
       class="input"
-      :class="[validatedType, state, size, inputClasses, customClasses]"
+      :class="[validatedType, inputClasses, customClasses]"
       v-bind="attrs"
+      :placeholder="placeholder"
       :value="computedValue"
       @input="onInput"
       @change="onChange"
@@ -20,8 +21,9 @@
       type="textarea"
       ref="textarea"
       class="textarea"
-      :class="[validatedType, state, size, inputClasses, customClasses]"
+      :class="[validatedType, inputClasses, customClasses]"
       v-bind="attrs"
+      :placeholder="placeholder"
       :value="computedValue"
       @input="onInput"
       @change="onChange"
@@ -31,14 +33,19 @@
       v-if="revealable && type == 'password'"
       src=""
       alt="reveal"
-      class="reveal-icon"
+      class="reveal-icon selectable"
       @click="onIconClick"
     />
-    <p class="maxlength" v-if="hasMaxLength">
+    <p class="counter" v-if="hasMaxLength">
       {{ valueLength }} / {{ attrs.maxlength }}
     </p>
 
-    <p class="message"></p>
+    <p class="validation message" v-if="state == 'error'">
+      {{ validationMessage }}
+    </p>
+    <p class="success message" v-else-if="state == 'success'">
+      {{ successMessage }}
+    </p>
   </div>
 </template>
 
@@ -57,19 +64,26 @@ import {
 } from "vue";
 import config from "../../utils/config.js";
 
-// caches
+// State
 const themeStore = useThemeStore();
 const { isDark } = storeToRefs(themeStore);
 const attrs = useAttrs();
+
+// Component State
+const newValue = ref(props.modelValue);
+const newType = ref(props.type);
+const isPasswordVisible = ref(false);
 const input = ref(null);
 
-// emits
+// Emits
 const emits = defineEmits(["update:modelValue"]);
 
-// props
+// Props
 const props = defineProps({
   label: String,
   placeholder: String,
+  validationMessage: String,
+  successMessage: String,
   modelValue: [Number, String],
   size: {
     type: String,
@@ -83,6 +97,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  bordered: {
+    type: Boolean,
+    default: false,
+  },
   type: {
     type: String,
     default: "text",
@@ -90,10 +108,6 @@ const props = defineProps({
   state: {
     type: String,
     default: "",
-  },
-  expanded: {
-    type: Boolean,
-    default: false,
   },
   rounded: {
     type: Boolean,
@@ -109,12 +123,9 @@ const props = defineProps({
   },
 });
 
-// reactive states
-let newValue = ref(props.modelValue);
-let newType = ref(props.type);
-let isPasswordVisible = ref(false);
-
-// methods
+/*
+ Methods
+*/
 const onInput = (event) => {
   if (!props.lazy) {
     updateValue(event.target.value);
@@ -144,7 +155,9 @@ const updateValue = (value) => {
   computedValue.value = value;
 };
 
-// watchers
+/*
+ Watchers
+*/
 watch(
   () => props.modelValue,
   (val) => {
@@ -152,7 +165,9 @@ watch(
   }
 );
 
-// computed properties
+/*
+ Computed
+*/
 let computedValue = computed({
   get() {
     return newValue.value;
@@ -178,17 +193,21 @@ const rootClasses = computed(() => {
   return [
     props.size,
     {
-      expanded: props.expanded,
+      disabled: isDisabled.value,
     },
   ];
 });
 
 const inputClasses = computed(() => {
-  return {
-    rounded: props.rounded,
-    disabled: isDisabled,
-    dark: isDark,
-  };
+  return [
+    props.size,
+    props.state,
+    {
+      rounded: props.rounded,
+      bordered: props.bordered,
+      dark: isDark,
+    },
+  ];
 });
 
 const isDisabled = computed(() => {
@@ -225,3 +244,154 @@ export default {
   inheritAttrs: false,
 };
 </script>
+
+<style scoped lang="scss">
+@import "@/assets/variables.scss";
+
+.input-control {
+  display: flex;
+  flex-flow: nowrap column;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 300;
+
+  // base control styling
+  &.disabled {
+    opacity: 0.5;
+    filter: grayscale(1) brightness(0.8);
+  }
+
+  // base label styling
+  .input-label {
+    display: block;
+    align-self: flex-start;
+    text-transform: capitalize;
+
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  // base validation message styling
+  .message {
+    display: block;
+    align-self: flex-start;
+
+    font-weight: 400;
+    font-size: 13px;
+  }
+  .validation.message {
+    color: $error;
+  }
+
+  .success.message {
+    color: $success-light;
+  }
+
+  // base input styling
+  input {
+    outline: none;
+    background-color: $white-soft;
+    border: $global-border-size solid transparent;
+
+    padding: 0px 6px;
+    height: 44px;
+    width: 100%;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+
+    // size: sm, md, lg
+    &.sm {
+      height: 34px;
+      font-size: 14px;
+
+      padding: 0px 6px;
+    }
+
+    &.md {
+      height: 44px;
+      font-size: 15px;
+
+      padding: 0px 8px;
+    }
+
+    &.lg {
+      height: 54px;
+      font-size: 18px;
+      font-weight: 300;
+
+      padding: 0px 10px;
+    }
+
+    &[type="textarea"].sm {
+      height: 54px;
+    }
+
+    &[type="textarea"].md {
+      height: 54px;
+    }
+
+    &[type="textarea"].lg {
+      height: 54px;
+    }
+
+    // state: error, success, bordered (normal)
+    /* 
+      border is visible on error/success even if the element is not set to be 'bordered'
+     */
+
+    &.bordered {
+      border-color: $color-border-light-1;
+    }
+
+    &.error {
+      border-color: $error;
+    }
+
+    &.success {
+      border-color: $success-light;
+    }
+
+    // rounded
+    &.rounded.sm {
+      border-radius: $global-border-radius - 2px;
+    }
+    &.rounded.md {
+      border-radius: $global-border-radius - 1px;
+    }
+    &.rounded.lg {
+      border-radius: $global-border-radius;
+    }
+  }
+}
+
+/*
+  DARKMODE
+*/
+.dark {
+  .input-control {
+    .success {
+      color: $success-dark;
+    }
+
+    input {
+      background-color: $black-soft;
+      color: $white-soft;
+
+      &.bordered {
+        border-color: $color-border-dark-1;
+      }
+
+      &.error {
+        border-color: $error;
+      }
+
+      &.success {
+        border-color: $success-dark;
+      }
+    }
+  }
+}
+</style>

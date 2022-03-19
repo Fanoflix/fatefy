@@ -76,7 +76,7 @@ button {
   align-items: center;
   justify-content: center;
 
-  border: $btn-border-size solid transparent;
+  border: $global-border-size solid transparent;
   font-weight: 400;
   cursor: pointer;
 
@@ -160,7 +160,7 @@ button {
 
 // ____> STYLES:  caps, rounded, transparent, outlined <primary, secondary (dark/light), danger>
 .rounded {
-  border-radius: 5px;
+  border-radius: $global-border-radius;
 }
 
 .caps {
@@ -181,31 +181,31 @@ button {
 
 .outlined.primary {
   background: transparent;
-  border: $btn-border-size solid $primary;
+  border: $global-border-size solid $primary;
   color: $primary;
 }
 
 .outlined.danger {
   background: transparent;
-  border: $btn-border-size solid $danger;
+  border: $global-border-size solid $danger;
   color: $danger;
 }
 
 .outlined.secondary {
   background: transparent;
-  border: $btn-border-size solid $secondary-dark;
+  border: $global-border-size solid $secondary-dark;
   color: $secondary-dark;
 }
 
 .outlined.important {
   background: transparent;
-  border: $btn-border-size solid $important;
+  border: $global-border-size solid $important;
   color: $important;
 }
 
 .outlined.secondary.dark {
   background: transparent;
-  border: $btn-border-size solid $secondary-light;
+  border: $global-border-size solid $secondary-light;
   color: $secondary-light;
 }
 

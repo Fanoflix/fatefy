@@ -2,6 +2,7 @@
   <main>
     <h1>Inputs</h1>
   </main>
+  <br />
   <p>
     Input element supports all text inputs; email, password, textarea, and
     number
@@ -10,15 +11,33 @@
 
   <form action="" @submit.prevent="printValue">
     <FInput
-      placeholder="test"
+      placeholder="Full Name"
       label="Name"
-      type="password"
-      revealable
-      rounded
-      maxlength="10"
+      type="text"
+      success-message="Name is available!"
+      validation-message="Name should be of minimum 7 characters"
+      minlength="7"
+      size="lg"
+      state="success"
+      bordered
+      disabled
       v-model="testVal"
     />
-    <FButton label="submit" />
+
+    <FInput
+      placeholder="Full Name"
+      label="Name"
+      type="text"
+      success-message="Name is available!"
+      validation-message="Name should be of minimum 7 characters"
+      minlength="7"
+      size="lg"
+      state="success"
+      bordered
+      v-model="testVal"
+    />
+
+    <!-- <FButton label="submit" /> -->
   </form>
 </template>
 
@@ -26,7 +45,7 @@
 import FInput from "../components/input/FInput.vue";
 import FButton from "../components/button/FButton.vue";
 import { ref } from "vue";
-let testVal = ref("");
+let testVal = ref(null);
 
 let printValue = () => {
   console.log(testVal.value);
@@ -43,5 +62,9 @@ div {
   display: flex;
   flex-wrap: wrap;
   max-width: 500px;
+}
+
+form {
+  width: 200px;
 }
 </style>

@@ -19,6 +19,7 @@
 </template>
 
 <script setup>
+// imports
 import { storeToRefs } from "pinia";
 import { computed, useAttrs } from "vue";
 import { useThemeStore } from "../../stores/theme.js";
@@ -50,7 +51,7 @@ const props = defineProps({
 });
 
 const themeStore = useThemeStore();
-let { isDark } = storeToRefs(themeStore);
+const { isDark } = storeToRefs(themeStore);
 const attrs = useAttrs();
 const isDisabled = computed(() => {
   return (
@@ -91,7 +92,7 @@ button {
   background: $primary;
 
   // fallback size (md)
-  width: auto;
+  min-width: 100px;
   height: 44px;
 
   padding: 0px 16px;
@@ -135,7 +136,7 @@ button {
 
 // ____> SIZES <sm, md, lg>
 .sm {
-  width: auto;
+  min-width: 80px;
   height: 38px;
 
   padding: 0px 15px;
@@ -143,7 +144,7 @@ button {
   font-weight: 700;
 }
 .md {
-  width: auto;
+  min-width: 100px;
   height: 48px;
 
   padding: 0px 16px;
@@ -151,7 +152,7 @@ button {
 }
 
 .lg {
-  width: auto;
+  min-width: 120px;
   height: 58px;
 
   padding: 0px 22px;

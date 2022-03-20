@@ -1,7 +1,6 @@
 <template>
-  <section class="login">
-    <h1>Login</h1>
-    <!-- container component or an inline form declaration here -->
+  <section>
+    <h1>Signup</h1>
   </section>
 </template>
 
@@ -10,7 +9,8 @@ import { useThemeStore } from "../stores/theme.js";
 import { storeToRefs } from "pinia";
 
 const themeStore = useThemeStore();
-const { isDark } = storeToRefs(themeStore);
+const themeStoreState = storeToRefs(themeStore);
+console.log(themeStoreState.getIsDark.value);
 </script>
 
 <style scoped lang="scss"></style>

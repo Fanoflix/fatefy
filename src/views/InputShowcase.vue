@@ -10,32 +10,110 @@
   <br />
 
   <form action="" @submit.prevent="printValue">
-    <FInput
-      placeholder="Full Name"
-      label="Name"
-      type="text"
-      success-message="Name is available!"
-      validation-message="Name should be of minimum 7 characters"
-      minlength="7"
-      size="lg"
-      state="success"
-      bordered
-      disabled
-      v-model="testVal"
-    />
+    <div>
+      <FInput
+        placeholder="Text Area"
+        label="Description"
+        type="textarea"
+        success-message="Name is available!"
+        validation-message="Name should be of minimum 7 characters"
+        size="sm"
+        rounded
+        bordered
+        state="success"
+        minlength="7"
+        v-model="testVal"
+      />
+      <FInput
+        placeholder="Text Area"
+        label="Description"
+        type="textarea"
+        success-message="Name is available!"
+        validation-message="Name should be of minimum 7 characters"
+        size="md"
+        rounded
+        bordered
+        state="error"
+        minlength="7"
+        v-model="testVal"
+      />
+      <FInput
+        placeholder="Text Area"
+        label="Description"
+        type="textarea"
+        success-message="Name is available!"
+        validation-message="Name should be of minimum 7 characters"
+        size="lg"
+        rounded
+        bordered
+        state="success"
+        minlength="7"
+        v-model="testVal"
+      />
+    </div>
 
-    <FInput
-      placeholder="Full Name"
-      label="Name"
-      type="text"
-      success-message="Name is available!"
-      validation-message="Name should be of minimum 7 characters"
-      minlength="7"
-      size="lg"
-      state="success"
-      bordered
-      v-model="testVal"
-    />
+    <br />
+    <br />
+    <br />
+
+    <div>
+      <FInput
+        placeholder="Full Name"
+        label="Name"
+        type="text"
+        success-message="Name is available!"
+        validation-message="Name should be of minimum 7 characters"
+        lazy
+        rounded
+        size="md"
+        v-model="testVal"
+      />
+      <br />
+      <FInput
+        placeholder="Full Name"
+        label="Name"
+        type="text"
+        success-message="Name is available!"
+        validation-message="Name should be of minimum 7 characters"
+        bordered
+        lazy
+        rounded
+        size="md"
+        v-model="testVal"
+      />
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div>
+      <FInput
+        placeholder="Full Name"
+        label="Name"
+        type="text"
+        success-message="Name is available!"
+        validation-message="Name should be of minimum 7 characters"
+        bordered
+        lazy
+        size="sm"
+        rounded
+        v-model="testVal"
+      />
+      <br />
+      <FInput
+        placeholder="Full Name"
+        label="Name"
+        type="text"
+        success-message="Name is available!"
+        validation-message="Name should be of minimum 7 characters"
+        bordered
+        lazy
+        size="sm"
+        rounded
+        v-model="testVal"
+      />
+    </div>
 
     <!-- <FButton label="submit" /> -->
   </form>
@@ -45,7 +123,7 @@
 import FInput from "../components/input/FInput.vue";
 import FButton from "../components/button/FButton.vue";
 import { ref } from "vue";
-let testVal = ref(null);
+let testVal = ref("Ammar");
 
 let printValue = () => {
   console.log(testVal.value);
@@ -61,10 +139,11 @@ button {
 div {
   display: flex;
   flex-wrap: wrap;
-  max-width: 500px;
+
+  max-width: 1000px;
 }
 
 form {
-  width: 200px;
+  width: 800px;
 }
 </style>

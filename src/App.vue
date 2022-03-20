@@ -6,13 +6,32 @@
     <FButton
       type="secondary"
       label="See Button Component"
+      rounded
       @click="$router.push('/')"
     />
 
     <FButton
       type="secondary"
       label="See Input Component"
+      rounded
       @click="$router.push('/inputShowcase')"
+    />
+    <br />
+    <FButton
+      type="primary"
+      label="Login"
+      size="lg"
+      rounded
+      @click="$router.push('/login')"
+    />
+
+    <FButton
+      type="primary"
+      size="lg"
+      label="Signup"
+      outlined
+      rounded
+      @click="$router.push('/signup')"
     />
   </div>
   <RouterView />

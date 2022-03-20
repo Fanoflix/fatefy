@@ -1,5 +1,5 @@
 <template>
-  <div class="input-control" :class="[rootClasses, { dark: isDark }]">
+  <div class="control" :class="[rootClasses, { dark: isDark }]">
     <p class="input-label">
       {{ label }}
     </p>
@@ -16,9 +16,8 @@
       @input="onInput"
       @change="onChange"
     />
-    <input
+    <textarea
       v-else
-      type="textarea"
       ref="textarea"
       class="textarea"
       :class="[validatedType, inputClasses, customClasses]"
@@ -53,15 +52,7 @@
 // imports
 import { useThemeStore } from "../../stores/theme.js";
 import { storeToRefs } from "pinia";
-import {
-  useAttrs,
-  computed,
-  ref,
-  watch,
-  defineProps,
-  defineEmits,
-  nextTick,
-} from "vue";
+import { useAttrs, computed, ref, watch, nextTick } from "vue";
 import config from "../../utils/config.js";
 
 // State
@@ -205,7 +196,7 @@ const inputClasses = computed(() => {
     {
       rounded: props.rounded,
       bordered: props.bordered,
-      dark: isDark,
+      dark: isDark.value,
     },
   ];
 });
@@ -248,15 +239,16 @@ export default {
 <style scoped lang="scss">
 @import "@/assets/variables.scss";
 
-.input-control {
+.control {
+  // base control styling
   display: flex;
   flex-flow: nowrap column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 
   font-weight: 300;
 
-  // base control styling
   &.disabled {
     opacity: 0.5;
     filter: grayscale(1) brightness(0.8);
@@ -288,13 +280,15 @@ export default {
     color: $success-light;
   }
 
-  // base input styling
-  input {
+  // common styling for both
+  .input,
+  .textarea {
     outline: none;
     background-color: $white-soft;
     border: $global-border-size solid transparent;
 
-    padding: 0px 6px;
+    padding: 4px 6px;
+
     height: 44px;
     width: 100%;
 
@@ -302,46 +296,7 @@ export default {
     font-size: 16px;
     font-weight: 400;
 
-    // size: sm, md, lg
-    &.sm {
-      height: 34px;
-      font-size: 14px;
-
-      padding: 0px 6px;
-    }
-
-    &.md {
-      height: 44px;
-      font-size: 15px;
-
-      padding: 0px 8px;
-    }
-
-    &.lg {
-      height: 54px;
-      font-size: 18px;
-      font-weight: 300;
-
-      padding: 0px 10px;
-    }
-
-    &[type="textarea"].sm {
-      height: 54px;
-    }
-
-    &[type="textarea"].md {
-      height: 54px;
-    }
-
-    &[type="textarea"].lg {
-      height: 54px;
-    }
-
-    // state: error, success, bordered (normal)
-    /* 
-      border is visible on error/success even if the element is not set to be 'bordered'
-     */
-
+    // bordered, success, error
     &.bordered {
       border-color: $color-border-light-1;
     }
@@ -365,20 +320,58 @@ export default {
       border-radius: $global-border-radius;
     }
   }
+
+  .input {
+    &.sm {
+      height: 34px;
+      font-size: 14px;
+    }
+
+    &.md {
+      height: 44px;
+      font-size: 15px;
+    }
+
+    &.lg {
+      height: 62px;
+      font-size: 18px;
+      font-weight: 300;
+    }
+  }
+
+  .textarea {
+    // size: sm, md, lg
+    &.sm {
+      height: 56px;
+      font-size: 14px;
+    }
+
+    &.md {
+      height: 74px;
+      font-size: 15px;
+    }
+
+    &.lg {
+      height: 98px;
+      font-size: 18px;
+      font-weight: 300;
+    }
+  }
 }
 
 /*
   DARKMODE
 */
 .dark {
-  .input-control {
-    .success {
+  .control {
+    .success.message {
       color: $success-dark;
     }
 
-    input {
+    .input,
+    .textarea {
       background-color: $black-soft;
-      color: $white-soft;
+      color: $text-dark;
 
       &.bordered {
         border-color: $color-border-dark-1;

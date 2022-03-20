@@ -12,6 +12,55 @@
     position: relative;
   }
 
+  // Custom Scrollbar
+  * {
+    /* width */
+    &::-webkit-scrollbar {
+      margin: 3px;
+      width: $scroll-width;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+      background: $scroll-track-color;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: $scroll-handle-color;
+      border-radius: $scroll-border-radius;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: $scroll-handle-hover-color;
+    }
+
+    &.dark {
+      // Custom Scrollbar
+      /* width */
+      &::-webkit-scrollbar {
+        width: $scroll-width;
+      }
+
+      /* Track */
+      &::-webkit-scrollbar-track {
+        background: $scroll-track-color-dark;
+      }
+
+      /* Handle */
+      &::-webkit-scrollbar-thumb {
+        background: $scroll-handle-color-dark;
+        border-radius: $scroll-border-radius;
+      }
+
+      /* Handle on hover */
+      &::-webkit-scrollbar-thumb:hover {
+        background: $scroll-handle-hover-color-dark;
+      }
+    }
+  }
+
   body {
     min-height: 100vh;
     background-color: $color-background;
@@ -61,27 +110,14 @@
         color: $text-dark;
       }
     }
-  }
 
-  // Globally applied classes
-  .error {
-    color: $danger;
-  }
+    // Globally applied classes
+    .no-select {
+      user-select: none;
+    }
 
-  .no-select {
-    user-select: none;
-  }
-
-  .selectable {
-    cursor: pointer;
-  }
-
-  .important-text {
-    color: $important;
-  }
-
-  .important-bg {
-    background-color: $important;
-    color: $white;
+    .selectable {
+      cursor: pointer;
+    }
   }
 }

@@ -1,8 +1,6 @@
 <template>
   <div class="control" :class="[rootClasses, { dark: isDark }]">
-    <p class="input-label">
-      {{ label }}
-    </p>
+    <p class="input-label">{{ label }} <span v-if="isRequired">*</span></p>
 
     <input
       v-if="type !== 'textarea'"
@@ -209,6 +207,13 @@ const isDisabled = computed(() => {
   );
 });
 
+const isRequired = computed(() => {
+  return (
+    attrs.required !== undefined &&
+    attrs.required !== false &&
+    attrs.disabled !== "false"
+  );
+});
 const hasMaxLength = computed(() => {
   return (
     attrs.maxlength !== undefined &&
@@ -260,8 +265,10 @@ export default {
     align-self: flex-start;
     text-transform: capitalize;
 
-    font-weight: 600;
-    font-size: 15px;
+    line-height: 1.3;
+    font-weight: 500;
+    font-size: 14px;
+    color: $label-light;
   }
 
   // base validation message styling
@@ -287,7 +294,7 @@ export default {
     background-color: $white-soft;
     border: $global-border-size solid transparent;
 
-    padding: 4px 6px;
+    padding: 4px 10px;
 
     height: 44px;
     width: 100%;
@@ -323,7 +330,7 @@ export default {
 
   .input {
     &.sm {
-      height: 34px;
+      height: 28px;
       font-size: 14px;
     }
 
@@ -364,6 +371,9 @@ export default {
 */
 .dark {
   .control {
+    .input-label {
+      color: $label-dark;
+    }
     .success.message {
       color: $success-dark;
     }

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import InputShowcase from "../views/InputShowcase.vue";
+import ButtonsShowcase from "../views/ButtonsShowcase.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 
@@ -16,6 +17,11 @@ const router = createRouter({
       path: "/inputShowcase",
       name: "inputShowcase",
       component: InputShowcase,
+    },
+    {
+      path: "/buttonShowcase",
+      name: "buttonShowcase",
+      component: ButtonsShowcase,
     },
     {
       path: "/login",

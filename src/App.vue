@@ -1,47 +1,63 @@
 <template>
-  <f-button type="important" label="Change Theme" @click="changeTheme" />
-  <br />
-
   <div class="nav">
-    <FButton
-      type="secondary"
-      label="See Button Component"
-      rounded
-      @click="$router.push('/')"
-    />
+    <div class="left">
+      <FButton
+        type="secondary"
+        label="Home"
+        size="md"
+        expanded
+        @click="$router.push('/')"
+      />
 
-    <FButton
-      type="secondary"
-      label="See Input Component"
-      rounded
-      @click="$router.push('/inputShowcase')"
-    />
-    <br />
-    <FButton
-      type="primary"
-      label="Login"
-      size="lg"
-      rounded
-      @click="$router.push('/login')"
-    />
+      <FButton
+        type="primary"
+        label="Login"
+        size="md"
+        @click="$router.push('/login')"
+      />
 
-    <FButton
-      type="primary"
-      size="lg"
-      label="Signup"
-      outlined
-      rounded
-      @click="$router.push('/signup')"
-    />
+      <FButton
+        type="primary"
+        label="Signup"
+        outlined
+        size="md"
+        @click="$router.push('/signup')"
+      />
+    </div>
+
+    <div class="right">
+      <FButton
+        type="secondary"
+        label="See Button Component"
+        size="sm"
+        @click="$router.push('/buttonShowcase')"
+      />
+
+      <FButton
+        type="secondary"
+        label="See Input Component"
+        size="sm"
+        @click="$router.push('/inputShowcase')"
+      />
+
+      <f-button
+        type="important"
+        size="sm"
+        label="Change Theme"
+        @click="changeTheme"
+      />
+    </div>
   </div>
-  <RouterView />
+
+  <div class="current-view">
+    <RouterView />
+  </div>
 </template>
 
 <script setup>
 import FButton from "./components/button/FButton.vue";
 import { RouterView } from "vue-router";
 import { useThemeStore } from "./stores/theme.js";
-// import { storeToRefs } from "pinia";
 import { onBeforeMount } from "vue";
 
 // TODO: Extract this snippet wherever you implement the 'Switch Theme' button
@@ -77,16 +93,33 @@ themeStore.$subscribe((_, state) => {
 @import "@/assets/base-styling.scss";
 @include base-styling;
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
 .nav {
   display: flex;
-  gap: 5px;
+  justify-content: space-between;
+  width: 100%;
+  height: 5vh;
+
+  .left {
+    display: flex;
+
+    button {
+      margin-right: 6px;
+    }
+  }
+
+  .right {
+    display: flex;
+    button {
+      margin-left: 6px;
+    }
+  }
+}
+
+.current-view {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

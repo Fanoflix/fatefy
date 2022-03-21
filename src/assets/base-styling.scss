@@ -6,7 +6,6 @@
   *::before,
   *::after {
     box-sizing: border-box;
-    // box-sizing:content-box;
     margin: 0;
     padding: 0;
     position: relative;
@@ -75,6 +74,13 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    #app {
+      margin: 0 auto;
+      padding: 0.5rem 0.7rem;
+
+      font-weight: normal;
+    }
 
     ::placeholder {
       user-select: none;

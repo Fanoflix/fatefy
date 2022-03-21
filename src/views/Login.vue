@@ -1,16 +1,23 @@
-<template>
+<template class="login">
   <section class="login">
-    <h1>Login</h1>
-    <!-- container component or an inline form declaration here -->
+    <main>
+      <h1>Login</h1>
+    </main>
   </section>
+  <!-- container component or an inline form declaration here -->
 </template>
 
 <script setup>
 import { useThemeStore } from "../stores/theme.js";
 import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
 
 const themeStore = useThemeStore();
 const { isDark } = storeToRefs(themeStore);
+
+onMounted(() => {
+  console.log("Login mounted");
+});
 </script>
 
 <style scoped lang="scss"></style>

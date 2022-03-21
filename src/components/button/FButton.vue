@@ -10,6 +10,7 @@
         caps: caps,
         dark: isDark,
         disabled: isDisabled,
+        expanded: expanded,
       },
     ]"
   >
@@ -45,6 +46,10 @@ const props = defineProps({
     default: false,
   },
   outlined: {
+    type: Boolean,
+    default: false,
+  },
+  expanded: {
     type: Boolean,
     default: false,
   },
@@ -157,6 +162,10 @@ button {
 
   padding: 0px 22px;
   font-size: 15px;
+}
+
+.expanded {
+  width: 100%;
 }
 
 // ____> STYLES:  caps, rounded, transparent, outlined <primary, secondary (dark/light), danger>

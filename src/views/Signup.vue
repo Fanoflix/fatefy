@@ -17,12 +17,15 @@
         <FInput
           type="text"
           label="Username"
-          placeholder="Full name"
+          placeholder="Display name"
           required
           minlength="3"
           maxlength="8"
           hasCounter
           rounded
+          validation-message="Username should be of minimum 3 characters and maximum 8 characters."
+          success-message="Username is available!"
+          state="error"
           size="md"
         />
         <FInput
@@ -32,6 +35,9 @@
           required
           minlength="3"
           size="md"
+          validation-message="Email should be of correct format."
+          success-message="Valid!"
+          state="success"
           rounded
         />
         <FInput

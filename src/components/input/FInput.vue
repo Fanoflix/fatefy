@@ -33,16 +33,21 @@
       class="reveal-icon selectable"
       @click="onIconClick"
     />
-    <p class="counter" v-if="hasMaxLength">
-      {{ valueLength }} / {{ attrs.maxlength }}
-    </p>
 
-    <p class="validation message" v-if="state == 'error'">
-      {{ validationMessage }}
-    </p>
-    <p class="success message" v-else-if="state == 'success'">
-      {{ successMessage }}
-    </p>
+    <div class="subtext">
+      <div class="message">
+        <p class="validation" v-if="state == 'error'">
+          {{ validationMessage }}
+        </p>
+        <p class="success" v-else-if="state == 'success'">
+          {{ successMessage }}
+        </p>
+      </div>
+
+      <p class="counter" v-if="hasMaxLength">
+        {{ valueLength }} / {{ attrs.maxlength }}
+      </p>
+    </div>
   </div>
 </template>
 
@@ -271,22 +276,6 @@ export default {
     color: $label-light;
   }
 
-  // base validation message styling
-  .message {
-    display: block;
-    align-self: flex-start;
-
-    font-weight: 400;
-    font-size: 13px;
-  }
-  .validation.message {
-    color: $error;
-  }
-
-  .success.message {
-    color: $success-light;
-  }
-
   // common styling for both
   .input,
   .textarea {
@@ -364,6 +353,29 @@ export default {
       font-weight: 300;
     }
   }
+
+  .subtext {
+    // base validation message styling
+    // .message {
+    display: flex;
+    align-self: flex-start;
+
+    font-weight: 400;
+    font-size: 13px;
+    // }
+
+    .message {
+      width: 80%;
+      text-align: left;
+      .validation {
+        color: $error;
+      }
+
+      .success {
+        color: $success-light;
+      }
+    }
+  }
 }
 
 /*
@@ -374,10 +386,6 @@ export default {
     .input-label {
       color: $label-dark;
     }
-    .success.message {
-      color: $success-dark;
-    }
-
     .input,
     .textarea {
       background-color: $black-soft;
@@ -393,6 +401,14 @@ export default {
 
       &.success {
         border-color: $success-dark;
+      }
+    }
+
+    .subtext {
+      .message {
+        .success {
+          color: $success-dark;
+        }
       }
     }
   }

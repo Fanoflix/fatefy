@@ -20,12 +20,11 @@
           placeholder="Display name"
           required
           minlength="3"
-          maxlength="8"
+          maxlength="20"
           hasCounter
           rounded
-          validation-message="Username should be of minimum 3 characters and maximum 8 characters."
+          validation-message="Minimum 3 characters and maximum 8 characters."
           success-message="Username is available!"
-          state="error"
           size="md"
         />
         <FInput
@@ -37,7 +36,6 @@
           size="md"
           validation-message="Email should be of correct format."
           success-message="Valid!"
-          state="success"
           rounded
         />
         <FInput
@@ -56,9 +54,15 @@
           rounded
           size="md"
         />
+        <FInput
+          type="textarea"
+          label="A little bit about you (optional)"
+          rounded
+          size="md"
+        />
       </div>
       <div class="buttons">
-        <FButton label="Create Account" size="md" rounded />
+        <FButton label="Create Account" size="lg" rounded />
       </div>
     </form>
   </section>
@@ -87,15 +91,15 @@ onMounted(() => {
   margin-top: 15px;
   padding: 15px;
 
-  width: 500px;
+  width: 400px;
 
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-form {
-  width: 300px;
 
+form {
+  width: 100%;
   .inputs {
     margin-top: 10px;
     display: flex;

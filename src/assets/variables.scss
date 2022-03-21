@@ -9,8 +9,14 @@ $danger: #92304a;
 $important: #005fa7;
 
 $success-light: #339900;
-$success-dark: #32ad74;
+$success-dark: #61c998;
 $error: #c0304f;
+
+$white: #ffffff;
+$white-soft: #f5f5f5;
+$white-soft2: #bbbbbb;
+$white-mute: #878787;
+$background-white: white;
 
 $black: #000000;
 $black-soft: #2b2b2b;
@@ -18,11 +24,8 @@ $black-soft2: #3a3a3a;
 $black-mute: #7b7b7b;
 $background-black: #1d1d1d;
 
-$white: #ffffff;
-$white-soft: #f5f5f5;
-$white-soft2: #bbbbbb;
-$white-mute: #878787;
-$background-white: white;
+$placeholder-text-light: #a0a0a0;
+$placeholder-text-dark: #797979;
 
 $btn-hover-light-1: #f0f0f0;
 $btn-hover-light-2: #242424;
@@ -78,7 +81,16 @@ $scroll-handle-color: $black-mute;
 $scroll-handle-hover-color: $black;
 $scroll-track-color: $color-background;
 
-//dark
+// dark
 $scroll-handle-color-dark: $white-mute;
 $scroll-handle-hover-color-dark: $white;
 $scroll-track-color-dark: $color-background-dark;
+
+/*
+  Inputs
+*/
+$input-success-shadow-light: inset 0px 0px 15px -8px $success-light;
+
+$input-success-border-dark: #6abe97;
+$input-success-shadow-dark: inset 0px 0px 15px -8px $success-dark;
+$input-error-shadow: inset 0px 0px 15px -8px $error;

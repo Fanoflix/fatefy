@@ -20,11 +20,16 @@
 </template>
 
 <script setup>
-// imports
+// Imports
 import { storeToRefs } from "pinia";
 import { computed, useAttrs } from "vue";
 import { useThemeStore } from "../../stores/theme.js";
 
+const themeStore = useThemeStore();
+const { isDark } = storeToRefs(themeStore);
+const attrs = useAttrs();
+
+// Props
 const props = defineProps({
   // ! Code inside the defineProps() argument cannot access other variables declared in <script setup>, because the entire expression is moved to an outer function scope when compiled.
 
@@ -55,9 +60,9 @@ const props = defineProps({
   },
 });
 
-const themeStore = useThemeStore();
-const { isDark } = storeToRefs(themeStore);
-const attrs = useAttrs();
+/* 
+  Computed
+*/
 const isDisabled = computed(() => {
   return (
     attrs.disabled !== undefined &&
@@ -67,6 +72,7 @@ const isDisabled = computed(() => {
 });
 </script>
 
+<!-- inheritAttrs: false -->
 <script>
 export default {
   inheritAttrs: false,
@@ -84,6 +90,7 @@ button {
 
   border: $global-border-size solid transparent;
   font-weight: 400;
+  font-family: "Poppins", sans-serif;
   cursor: pointer;
 
   &:hover:not(.dark, .disabled) {
@@ -107,7 +114,14 @@ button {
 // ____> TYPES <primary, secondary (dark/light), danger>
 .primary {
   background: $primary;
-  font-weight: 700;
+  font-weight: 500;
+  &:not(.disabled) {
+    box-shadow: 0px 0px 15px rgba(0, 255, 98, 0.5);
+  }
+
+  &.dark:not(.disabled) {
+    box-shadow: 0px 0px 15px rgba(0, 187, 255, 0.2);
+  }
 
   &.primary:not(.dark, .outlined) {
     color: $color-background;
@@ -121,7 +135,6 @@ button {
 .danger {
   background: $danger;
   color: $white;
-  font-weight: 700;
 }
 
 .secondary {
@@ -146,7 +159,7 @@ button {
 
   padding: 0px 15px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
 }
 .md {
   min-width: 100px;
@@ -161,7 +174,7 @@ button {
   height: 58px;
 
   padding: 0px 22px;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .expanded {

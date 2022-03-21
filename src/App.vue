@@ -27,21 +27,21 @@
 
     <div class="right">
       <FButton
-        type="secondary"
-        label="See Button Component"
+        type="important"
+        label="Button Component Showcase"
         size="sm"
         @click="$router.push('/buttonShowcase')"
       />
 
       <FButton
-        type="secondary"
-        label="See Input Component"
+        type="important"
+        label="Input Component Showcase"
         size="sm"
         @click="$router.push('/inputShowcase')"
       />
 
       <f-button
-        type="important"
+        type="secondary"
         size="sm"
         label="Change Theme"
         @click="changeTheme"
@@ -97,7 +97,7 @@ themeStore.$subscribe((_, state) => {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 5vh;
+  min-height: 5vh;
 
   .left {
     display: flex;

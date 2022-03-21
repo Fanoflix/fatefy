@@ -7,7 +7,7 @@
       :type="validatedType"
       ref="input"
       class="input"
-      :class="[validatedType, inputClasses, customClasses]"
+      :class="[inputClasses, customClasses, passwordRevealIconClass]"
       v-bind="attrs"
       :placeholder="placeholder"
       :value="computedValue"
@@ -28,13 +28,13 @@
 
     <img
       v-if="revealable && type == 'password'"
-      src=""
+      :src="revealIconSource"
       alt="reveal"
       class="reveal-icon selectable"
       @click="onIconClick"
     />
 
-    <div class="subtext">
+    <div class="subtext" v-if="state">
       <div class="message">
         <p class="validation" v-if="state == 'error'">
           {{ validationMessage }}
@@ -52,13 +52,13 @@
 </template>
 
 <script setup>
-// imports
+// Imports
 import { useThemeStore } from "../../stores/theme.js";
 import { storeToRefs } from "pinia";
 import { useAttrs, computed, ref, watch, nextTick } from "vue";
 import config from "../../utils/config.js";
 
-// State
+// States
 const themeStore = useThemeStore();
 const { isDark } = storeToRefs(themeStore);
 const attrs = useAttrs();
@@ -162,7 +162,7 @@ watch(
 /*
  Computed
 */
-let computedValue = computed({
+const computedValue = computed({
   get() {
     return newValue.value;
   },
@@ -204,6 +204,14 @@ const inputClasses = computed(() => {
   ];
 });
 
+const passwordRevealIconClass = computed(() => {
+  return isPasswordVisible.value &&
+    props.revealable &&
+    props.type === "password"
+    ? "secret-open"
+    : "secret-close";
+});
+
 const isDisabled = computed(() => {
   return (
     attrs.disabled !== undefined &&
@@ -219,6 +227,7 @@ const isRequired = computed(() => {
     attrs.disabled !== "false"
   );
 });
+
 const hasMaxLength = computed(() => {
   return (
     attrs.maxlength !== undefined &&
@@ -226,6 +235,12 @@ const hasMaxLength = computed(() => {
     props.hasCounter &&
     props.type !== "number"
   );
+});
+
+const revealIconSource = computed(() => {
+  return isPasswordVisible.value
+    ? new URL("../../assets/icons/secret-open.svg", import.meta.url)
+    : new URL("../../assets/icons/secret-close.svg", import.meta.url);
 });
 
 const valueLength = computed(() => {
@@ -259,11 +274,6 @@ export default {
 
   font-weight: 300;
 
-  &.disabled {
-    opacity: 0.5;
-    filter: grayscale(1) brightness(0.8);
-  }
-
   // base label styling
   .input-label {
     display: block;
@@ -276,12 +286,17 @@ export default {
     color: $label-light;
   }
 
+  span {
+    font-style: italic;
+  }
+
   // common styling for both
   .input,
   .textarea {
     outline: none;
     background-color: $white-soft;
     border: $global-border-size solid transparent;
+    color: $black;
 
     padding: 4px 10px;
 
@@ -291,6 +306,11 @@ export default {
     font-family: "Poppins", sans-serif;
     font-size: 16px;
     font-weight: 400;
+    transition: box-shadow 0.2s ease;
+
+    &:focus {
+      outline: 1px solid rgb(0, 0, 0);
+    }
 
     // bordered, success, error
     &.bordered {
@@ -299,10 +319,12 @@ export default {
 
     &.error {
       border-color: $error;
+      box-shadow: $input-error-shadow;
     }
 
     &.success {
       border-color: $success-light;
+      box-shadow: $input-success-shadow-light;
     }
 
     // rounded
@@ -356,16 +378,15 @@ export default {
 
   .subtext {
     // base validation message styling
-    // .message {
     display: flex;
     align-self: flex-start;
+    width: 100%;
 
     font-weight: 400;
-    font-size: 13px;
-    // }
+    font-size: 12px;
 
     .message {
-      width: 80%;
+      width: 90%;
       text-align: left;
       .validation {
         color: $error;
@@ -375,6 +396,21 @@ export default {
         color: $success-light;
       }
     }
+
+    .counter {
+      width: 10%;
+      min-width: 40px;
+      text-align: right;
+      color: $white-mute;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    filter: grayscale(0.8) brightness(0.8);
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
   }
 }
 
@@ -389,7 +425,11 @@ export default {
     .input,
     .textarea {
       background-color: $black-soft;
-      color: $text-dark;
+      color: $white;
+
+      &:focus {
+        outline: 1px solid $white;
+      }
 
       &.bordered {
         border-color: $color-border-dark-1;
@@ -400,7 +440,8 @@ export default {
       }
 
       &.success {
-        border-color: $success-dark;
+        border-color: $input-success-border-dark;
+        box-shadow: $input-success-shadow-dark;
       }
     }
 
@@ -409,6 +450,10 @@ export default {
         .success {
           color: $success-dark;
         }
+      }
+
+      .counter {
+        color: $black-mute;
       }
     }
   }

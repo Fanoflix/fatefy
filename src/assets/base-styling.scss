@@ -83,7 +83,12 @@
     }
 
     ::placeholder {
+      color: $placeholder-text-light;
+    }
+
+    .dark::placeholder {
       user-select: none;
+      color: $placeholder-text-dark;
     }
 
     h1,

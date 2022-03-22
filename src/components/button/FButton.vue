@@ -25,6 +25,9 @@ import { storeToRefs } from "pinia";
 import { computed, useAttrs } from "vue";
 import { useThemeStore } from "../../stores/theme.js";
 
+// State
+
+// Reactive State
 const themeStore = useThemeStore();
 const { isDark } = storeToRefs(themeStore);
 const attrs = useAttrs();

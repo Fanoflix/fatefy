@@ -78,9 +78,11 @@ import { onMounted } from "vue";
 import FButton from "../components/button/FButton.vue";
 import FInput from "../components/input/FInput.vue";
 
+// Reactive State
 const themeStore = useThemeStore();
 const { isDark } = storeToRefs(themeStore);
 
+// Lifecycle Hooks
 onMounted(() => {
   console.log("Singup mounted");
 });
@@ -91,7 +93,7 @@ onMounted(() => {
   margin-top: 15px;
   padding: 15px;
 
-  width: 400px;
+  width: 460px;
 
   display: flex;
   align-items: center;

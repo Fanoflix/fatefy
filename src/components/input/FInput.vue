@@ -58,16 +58,16 @@ import { storeToRefs } from "pinia";
 import { useAttrs, computed, ref, watch, nextTick } from "vue";
 import config from "../../utils/config.js";
 
-// States
-const themeStore = useThemeStore();
-const { isDark } = storeToRefs(themeStore);
-const attrs = useAttrs();
+// State
 
-// Component State
+// Reactive State
 const newValue = ref(props.modelValue);
 const newType = ref(props.type);
 const isPasswordVisible = ref(false);
 const input = ref(null);
+const themeStore = useThemeStore();
+const { isDark } = storeToRefs(themeStore);
+const attrs = useAttrs();
 
 // Emits
 const emits = defineEmits(["update:modelValue"]);

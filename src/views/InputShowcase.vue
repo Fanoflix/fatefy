@@ -20,7 +20,7 @@
           size="sm"
           rounded
           bordered
-          state="success"
+          state="error"
           minlength="7"
           v-model="testVal"
         />
@@ -66,6 +66,7 @@
           lazy
           rounded
           size="md"
+          state="error"
           v-model="testVal"
         />
         <br />

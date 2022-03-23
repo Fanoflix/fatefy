@@ -391,6 +391,7 @@ export default {
       .validation {
         color: $error;
       }
+      // ! Error: When focusing an input field with state="error", the font-weight of the .validation message lowers 1 degree.
 
       .success {
         color: $success-light;

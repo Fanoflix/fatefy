@@ -69,12 +69,13 @@
 </template>
 
 <script setup>
-/* 
+/*
   imports
 */
 import { useThemeStore } from "../stores/theme.js";
 import { storeToRefs } from "pinia";
 import { onMounted } from "vue";
+import { onBeforeRouteLeave } from "vue-router";
 import FButton from "../components/button/FButton.vue";
 import FInput from "../components/input/FInput.vue";
 
@@ -85,6 +86,15 @@ const { isDark } = storeToRefs(themeStore);
 // Lifecycle Hooks
 onMounted(() => {
   console.log("Singup mounted");
+});
+
+onBeforeRouteLeave((to, from) => {
+  // TODO
+  // if all fields are not empty (Composable)
+  // if all promises are resolved (Composable)
+  // show the snackbar component instead of confirm()
+  const answer = confirm("Are you sure you want to leave?");
+  if (!answer) return false;
 });
 </script>
 

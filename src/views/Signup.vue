@@ -13,6 +13,7 @@
           minlength="3"
           rounded
           size="md"
+          ref="myRef"
         />
         <FInput
           type="text"
@@ -74,7 +75,7 @@
 */
 import { useThemeStore } from "../stores/theme.js";
 import { storeToRefs } from "pinia";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { onBeforeRouteLeave } from "vue-router";
 import FButton from "../components/button/FButton.vue";
 import FInput from "../components/input/FInput.vue";
@@ -82,20 +83,22 @@ import FInput from "../components/input/FInput.vue";
 // Reactive State
 const themeStore = useThemeStore();
 const { isDark } = storeToRefs(themeStore);
+const myRef = ref(null);
 
 // Lifecycle Hooks
 onMounted(() => {
-  console.log("Singup mounted");
+  myRef.value.input.focus();
 });
 
-onBeforeRouteLeave((to, from) => {
-  // TODO
-  // if all fields are not empty (Composable)
-  // if all promises are resolved (Composable)
-  // show the snackbar component instead of confirm()
-  const answer = confirm("Are you sure you want to leave?");
-  if (!answer) return false;
-});
+// onBeforeRouteLeave((to, from) => {
+//   // TODO
+//   // if all fields are not empty (Composable)
+//   // if all promises are resolved (Composable)
+//   // then:
+//   // show the snackbar component instead of confirm()
+//   const answer = confirm("Are you sure you want to leave?");
+//   if (!answer) return false;
+// });
 </script>
 
 <style scoped lang="scss">

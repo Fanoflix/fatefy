@@ -13,6 +13,7 @@
       :value="computedValue"
       @input="onInput"
       @change="onChange"
+      @invalid="onInvalid"
     />
     <textarea
       v-else
@@ -55,7 +56,7 @@
 // Imports
 import { useThemeStore } from "../../stores/theme.js";
 import { storeToRefs } from "pinia";
-import { useAttrs, computed, ref, watch, nextTick } from "vue";
+import { useAttrs, computed, ref, watch, nextTick, defineExpose } from "vue";
 import config from "../../utils/config.js";
 
 // State
@@ -68,6 +69,9 @@ const input = ref(null);
 const themeStore = useThemeStore();
 const { isDark } = storeToRefs(themeStore);
 const attrs = useAttrs();
+// ! for the time being
+const isValid = ref(null);
+// ! ---------------
 
 // Emits
 const emits = defineEmits(["update:modelValue"]);
@@ -117,18 +121,31 @@ const props = defineProps({
   },
 });
 
+// ! <script setup> components are private by default. Which means, if we assign a ref to this component in the parent component, we will not be able to access anything from this component in the parent component. UNLESS we specify "defineExpose" macro.
+
+// Exposed
+defineExpose({
+  input,
+});
+
 /*
  Methods
 */
 const onInput = (event) => {
   if (!props.lazy) {
     updateValue(event.target.value);
+    // ! for the time being
+    setIsValid(event);
+    // ! ---------------
   }
 };
 
 const onChange = (event) => {
   if (props.lazy) {
     updateValue(event.target.value);
+    // ! for the time being
+    setIsValid(event);
+    // ! ---------------
   }
 };
 
@@ -148,6 +165,12 @@ const togglePasswordVisibility = async () => {
 const updateValue = (value) => {
   computedValue.value = value;
 };
+
+// ! for the time being
+const setIsValid = (event) => {
+  isValid.value = event.target.checkValidity();
+};
+// ! ---------------
 
 /*
  Watchers
@@ -197,6 +220,10 @@ const inputClasses = computed(() => {
     props.size,
     props.state,
     {
+      // ! for the time being
+      success: isValid.value && isValid.value !== null,
+      error: !isValid.value && isValid.value !== null,
+      // ! ---------------
       rounded: props.rounded,
       bordered: props.bordered,
       dark: isDark.value,

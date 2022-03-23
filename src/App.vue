@@ -29,20 +29,23 @@
       <FButton
         type="important"
         label="Button Component Showcase"
-        size="sm"
+        outlined
+        size="md"
         @click="$router.push('/buttonShowcase')"
       />
 
       <FButton
         type="important"
         label="Input Component Showcase"
-        size="sm"
+        outlined
+        size="md"
         @click="$router.push('/inputShowcase')"
       />
 
       <f-button
         type="secondary"
-        size="sm"
+        size="md"
+        outlined
         label="Change Theme"
         @click="changeTheme"
       />

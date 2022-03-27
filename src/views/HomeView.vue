@@ -4,8 +4,9 @@
     <FContainer
       heading="Test"
       padding="3"
-      width="500"
-      height="550"
+      width="500px"
+      height="600px"
+      heading-center
       rounded
       wrap
       class="test"
@@ -35,6 +36,5 @@ import { ref } from "vue";
 
 <style lang="scss" scoped>
 .test {
-  background: red                   ;
 }
 </style>

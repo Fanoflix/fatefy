@@ -8,10 +8,11 @@
       {
         rounded: rounded,
         outlined: outlined,
+        transparent: transparent,
         caps: caps,
+        expanded: expanded,
         dark: isDark,
         disabled: isDisabled,
-        expanded: expanded,
       },
     ]"
   >
@@ -50,11 +51,15 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  caps: {
+  outlined: {
     type: Boolean,
     default: false,
   },
-  outlined: {
+  transparent: {
+    type: Boolean,
+    default: false,
+  },
+  caps: {
     type: Boolean,
     default: false,
   },
@@ -88,7 +93,8 @@ export default {
 
 // base button styling: width, height (for sm, md, lg)
 button {
-  transition: color $element-trans-time, background-color $element-trans-time;
+  transition: filter $element-trans-time, color $element-trans-time,
+    background-color $element-trans-time;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,27 +120,32 @@ button {
 
   padding: 0px 16px;
   font-size: 14px;
+
+  &.transparent {
+    background: transparent;
+    border: none;
+  }
 }
 
 // ____> TYPES <primary, secondary (dark/light), danger>
 .primary {
   background: $primary;
   font-weight: 500;
-  &:not(.disabled) {
+  &:not(.dark, .disabled) {
     box-shadow: 0px 0px 15px rgba(0, 255, 98, 0.5);
   }
 
-  &.dark:not(.disabled) {
-    box-shadow: 0px 0px 15px rgba(0, 187, 255, 0.2);
-  }
+  // &.dark:not(.disabled) {
+  //   box-shadow: 0px 0px 15px rgba(0, 187, 255, 0.2);
+  // }
 
   &.primary:not(.dark, .outlined) {
     color: $color-background;
   }
 
-  &.primary.dark:not(.outlined) {
-    color: $color-background-dark;
-  }
+  // &.dark:not(.outlined) {
+  //   color: $color-background-dark;
+  // }
 }
 
 .danger {
@@ -147,10 +158,10 @@ button {
   color: $secondary-dark;
 }
 
-.secondary.dark {
-  background: $secondary-dark;
-  color: $secondary-light;
-}
+// .secondary.dark {
+//   background: $secondary-dark;
+//   color: $secondary-light;
+// }
 
 .important {
   background: $important;
@@ -231,11 +242,11 @@ button {
   color: $important;
 }
 
-.outlined.secondary.dark {
-  background: transparent;
-  border: $global-border-size solid $secondary-light;
-  color: $secondary-light;
-}
+// .outlined.secondary.dark {
+//   background: transparent;
+//   border: $global-border-size solid $secondary-light;
+//   color: $secondary-light;
+// }
 
 .outlined:not(.disabled, .dark) {
   &:hover {
@@ -244,12 +255,12 @@ button {
   }
 }
 
-.outlined.dark:not(.disabled) {
-  &:hover {
-    background: $btn-hover-light-2;
-    filter: none;
-  }
-}
+// .outlined.dark:not(.disabled) {
+//   &:hover {
+//     background: $btn-hover-light-2;
+//     filter: none;
+//   }
+// }
 
 .disabled {
   opacity: 0.3;
@@ -257,6 +268,20 @@ button {
 
   &:hover {
     filter: none;
+  }
+}
+
+.dark {
+  button {
+    &.primary {
+      &:not(.disabled) {
+        box-shadow: 0px 0px 15px rgba(0, 187, 255, 0.2);
+      }
+
+      &:not(.outlined) {
+        color: $color-background-dark;
+      }
+    }
   }
 }
 </style>

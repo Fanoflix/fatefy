@@ -2,6 +2,7 @@
 $global-padding: 8px;
 $global-border-size: 1px;
 $global-border-radius: 5px;
+$global-aesthetic-margin: 6px;
 
 // ____> Color Palette
 $gray: #fafafa;
@@ -46,6 +47,8 @@ $color-border-dark-2: #858585;
 $color-background: $background-white;
 $color-background-soft: $white-soft;
 $color-background-mute: $white-mute;
+$card-bg-color-light: #ededed;
+$card-bg-color-dark: #252525;
 
 $color-border-important: $important;
 $color-border: $color-border-light-1;
@@ -74,6 +77,12 @@ $label-dark: #4f4f4f;
 $text-and-bg-trans-time: 0.35s;
 $element-trans-time: $text-and-bg-trans-time - 0.1s;
 
+// _____> Components Specific
+
+/*
+  Navigation Panel
+*/
+$nav-height: 55px;
 
 /* 
   Scrollbar
@@ -108,7 +117,13 @@ $input-success-shadow-dark: inset 0px 0px 15px -8px $success-dark;
 */
 $container-default-padding: 12px;
 // light
-$container-bg-color-light: #ededed;
+$container-bg-color-light: $card-bg-color-light;
 
 // dark
-$container-bg-color-dark: rgb(37, 37, 37);
+$container-bg-color-dark: $card-bg-color-dark;
+
+/*
+! z-indexex
+*/
+
+$z-top: 100;

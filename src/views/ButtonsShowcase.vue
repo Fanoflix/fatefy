@@ -74,6 +74,20 @@
       <f-button disabled outlined type="important" label="Important" />
       <f-button disabled outlined type="danger" label="Danger" />
     </div>
+
+    <br />
+    <h3>Caps</h3>
+
+    <div>
+      <f-button caps size="sm" label="Primary" />
+      <f-button type="secondary" caps size="md" label="Secondary" />
+      <f-button type="important" caps size="lg" label="Important" />
+      <f-button type="danger" rounded caps size="lg" label="Danger" />
+      <f-button label="Primary" caps size="sm" outlined />
+      <f-button type="secondary" caps size="md" outlined label="Secondary" />
+      <f-button type="important" caps size="lg" outlined label="Important" />
+      <f-button type="danger" rounded caps size="lg" outlined label="Danger" />
+    </div>
   </section>
 </template>
 

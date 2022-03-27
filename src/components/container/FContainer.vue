@@ -30,6 +30,10 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  headingCenter: {
+    type: Boolean,
+    default: false,
+  },
   emptyText: {
     type: String,
     default: null,
@@ -107,8 +111,8 @@ const containerClasses = computed(() => {
 
 const cssProps = computed(() => {
   return {
-    "--width": props.width + "px",
-    "--height": props.height + "px",
+    "--width": props.width,
+    "--height": props.height,
   };
 });
 
@@ -167,6 +171,8 @@ const cssProps = computed(() => {
 
   .heading {
     height: 30px;
+    align-self: center;
+    justify-self: center;
   }
 }
 

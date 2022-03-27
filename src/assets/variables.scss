@@ -1,8 +1,13 @@
+// ____> Physical attributes
+$global-padding: 8px;
+$global-border-size: 1px;
+$global-border-radius: 5px;
+
 // ____> Color Palette
 $gray: #fafafa;
 $primary: #42b883;
 $primary-2: #003806;
-$secondary-light: #e9e9e9;
+$secondary-light: #d5d5d5;
 $secondary-dark: #373737;
 
 $danger: #92304a;
@@ -68,14 +73,13 @@ $label-dark: #4f4f4f;
 // transition variables
 $text-and-bg-trans-time: 0.35s;
 $element-trans-time: $text-and-bg-trans-time - 0.1s;
-$global-border-size: 1px;
-$global-border-radius: 5px;
+
 
 /* 
   Scrollbar
 */
-$scroll-width: 12px;
-$scroll-border-radius: 3px;
+$scroll-width: 10px;
+$scroll-border-radius: 6px;
 
 // light
 $scroll-handle-color: $black-mute;
@@ -90,8 +94,21 @@ $scroll-track-color-dark: $color-background-dark;
 /*
   Inputs
 */
+$input-error-shadow: inset 0px 0px 15px -8px $error;
+
+// light
 $input-success-shadow-light: inset 0px 0px 15px -8px $success-light;
 
+// dark
 $input-success-border-dark: #6abe97;
 $input-success-shadow-dark: inset 0px 0px 15px -8px $success-dark;
-$input-error-shadow: inset 0px 0px 15px -8px $error;
+
+/*
+  Container
+*/
+$container-default-padding: 12px;
+// light
+$container-bg-color-light: #ededed;
+
+// dark
+$container-bg-color-dark: rgb(37, 37, 37);

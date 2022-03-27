@@ -1,6 +1,7 @@
 <template>
   <button
     v-bind="$attrs"
+    class="no-select"
     :class="[
       type,
       size,

@@ -1,6 +1,8 @@
 <template>
   <div class="control" :class="[rootClasses, { dark: isDark }]">
-    <p class="input-label">{{ label }} <span v-if="isRequired">*</span></p>
+    <p class="input-label no-select">
+      {{ label }} <span v-if="isRequired">*</span>
+    </p>
 
     <input
       v-if="type !== 'textarea'"
@@ -66,12 +68,10 @@ const newValue = ref(props.modelValue);
 const newType = ref(props.type);
 const isPasswordVisible = ref(false);
 const input = ref(null);
+const textarea = ref(null);
 const themeStore = useThemeStore();
 const { isDark } = storeToRefs(themeStore);
 const attrs = useAttrs();
-// // ! for the time being
-// const isValid = ref(null);
-// // ! ---------------
 
 // Emits
 const emits = defineEmits(["update:modelValue"]);
@@ -134,18 +134,12 @@ defineExpose({
 const onInput = (event) => {
   if (!props.lazy) {
     updateValue(event.target.value);
-    // // ! for the time being
-    // setIsValid(event);
-    // // ! ---------------
   }
 };
 
 const onChange = (event) => {
   if (props.lazy) {
     updateValue(event.target.value);
-    // // ! for the time being
-    // setIsValid(event);
-    // // ! ---------------
   }
 };
 
@@ -165,12 +159,6 @@ const togglePasswordVisibility = async () => {
 const updateValue = (value) => {
   computedValue.value = value;
 };
-
-// // ! for the time being
-// const setIsValid = (event) => {
-//   isValid.value = event.target.checkValidity();
-// };
-// // ! ---------------
 
 /*
  Watchers
@@ -220,10 +208,6 @@ const inputClasses = computed(() => {
     props.size,
     props.state,
     {
-      // // ! for the time being
-      // success: isValid.value && isValid.value !== null,
-      // error: !isValid.value && isValid.value !== null,
-      // // ! ---------------
       rounded: props.rounded,
       bordered: props.bordered,
       dark: isDark.value,
@@ -334,8 +318,8 @@ export default {
     font-family: "Poppins", sans-serif;
     font-size: 16px;
     font-weight: 400;
-    transition: color $element-trans-time,
-      background-color $element-trans-time, box-shadow 0.2s ease;
+    transition: color $element-trans-time, background-color $element-trans-time,
+      box-shadow 0.2s ease;
 
     &:focus {
       outline: 1px solid rgb(0, 0, 0);

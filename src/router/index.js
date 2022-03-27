@@ -4,6 +4,7 @@ import InputShowcase from "../views/InputShowcase.vue";
 import ButtonsShowcase from "../views/ButtonsShowcase.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
+import NotFound from "../views/NotFound.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,16 +13,6 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: HomeView,
-    },
-    {
-      path: "/inputShowcase",
-      name: "inputShowcase",
-      component: InputShowcase,
-    },
-    {
-      path: "/buttonShowcase",
-      name: "buttonShowcase",
-      component: ButtonsShowcase,
     },
     {
       path: "/login",
@@ -33,6 +24,17 @@ const router = createRouter({
       name: "signup",
       component: Signup,
     },
+    // temporary demo routes
+    {
+      path: "/inputShowcase",
+      name: "inputShowcase",
+      component: InputShowcase,
+    },
+    {
+      path: "/buttonShowcase",
+      name: "buttonShowcase",
+      component: ButtonsShowcase,
+    },
     // {
     //   path: "/about",
     //   name: "about",
@@ -41,6 +43,10 @@ const router = createRouter({
     //   // which is lazy-loaded when the route is visited.
     //   component: () => import("../views/AboutView.vue"),
     // },
+    {
+      path: "/:notFound(.*)",
+      component: NotFound,
+    },
   ],
 });
 

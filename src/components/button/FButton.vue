@@ -137,7 +137,7 @@ button {
 
   // &.dark:not(.disabled) {
   //   box-shadow: 0px 0px 15px rgba(0, 187, 255, 0.2);
-  // }
+  // } // done
 
   &.primary:not(.dark, .outlined) {
     color: $color-background;
@@ -145,7 +145,7 @@ button {
 
   // &.dark:not(.outlined) {
   //   color: $color-background-dark;
-  // }
+  // } // done
 }
 
 .danger {

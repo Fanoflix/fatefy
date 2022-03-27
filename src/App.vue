@@ -5,7 +5,6 @@
         type="secondary"
         label="Home"
         size="md"
-        expanded
         @click="$router.push('/')"
       />
 

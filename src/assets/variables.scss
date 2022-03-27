@@ -66,7 +66,8 @@ $text-mute-dark: $white-mute;
 $label-dark: #4f4f4f;
 
 // transition variables
-$text-and-bg-trans-time: 0.15s;
+$text-and-bg-trans-time: 0.35s;
+$element-trans-time: $text-and-bg-trans-time - 0.1s;
 $global-border-size: 1px;
 $global-border-radius: 5px;
 

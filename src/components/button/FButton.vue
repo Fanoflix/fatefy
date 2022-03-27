@@ -87,6 +87,7 @@ export default {
 
 // base button styling: width, height (for sm, md, lg)
 button {
+  transition: color $element-trans-time, background-color $element-trans-time;
   display: flex;
   align-items: center;
   justify-content: center;

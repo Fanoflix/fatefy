@@ -1,3 +1,4 @@
+// TODO Make Sidebar retractable
 <template>
   <FContainer width="220" height="100vh" class="side-bar"></FContainer>
 </template>

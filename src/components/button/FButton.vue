@@ -121,10 +121,10 @@ button {
   padding: 0px 16px;
   font-size: 14px;
 
-  &.transparent {
-    background: transparent;
-    border: none;
-  }
+  // &.transparent {
+  //   background: transparent;
+  //   border: none;
+  // }
 }
 
 // ____> TYPES <primary, secondary (dark/light), danger>
@@ -161,7 +161,7 @@ button {
 // .secondary.dark {
 //   background: $secondary-dark;
 //   color: $secondary-light;
-// }
+// } // done
 
 .important {
   background: $important;
@@ -246,7 +246,7 @@ button {
 //   background: transparent;
 //   border: $global-border-size solid $secondary-light;
 //   color: $secondary-light;
-// }
+// } // done
 
 .outlined:not(.disabled, .dark) {
   &:hover {
@@ -260,7 +260,7 @@ button {
 //     background: $btn-hover-light-2;
 //     filter: none;
 //   }
-// }
+// } // done
 
 .disabled {
   opacity: 0.3;
@@ -280,6 +280,26 @@ button {
 
       &:not(.outlined) {
         color: $color-background-dark;
+      }
+    }
+
+    &.secondary {
+      &.dark {
+        background: $secondary-dark;
+        color: $secondary-light;
+      }
+
+      &.outlined {
+        background: transparent;
+        border: $global-border-size solid $secondary-light;
+        color: $secondary-light;
+      }
+    }
+
+    &.outlined {
+      &:hover {
+        background: $btn-hover-light-2;
+        filter: none;
       }
     }
   }

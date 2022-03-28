@@ -58,7 +58,7 @@
 // Imports
 import { useThemeStore } from "../../stores/theme.js";
 import { storeToRefs } from "pinia";
-import { useAttrs, computed, ref, watch, nextTick, defineExpose } from "vue";
+import { useAttrs, computed, ref, watch, nextTick } from "vue";
 import config from "../../utils/config.js";
 
 // State

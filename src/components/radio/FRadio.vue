@@ -37,6 +37,14 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  size: {
+    type: String,
+    default: "md",
+  },
+  type: {
+    type: String,
+    default: "radio",
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -94,5 +102,10 @@ const inputClasses = computed(() => {
 
 <style scoped lang="scss">
 .f-radio {
+  cursor: pointer;
+
+  input {
+    cursor: pointer;
+  }
 }
 </style>

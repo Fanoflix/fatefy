@@ -1,7 +1,11 @@
 <template>
-  <FRadio name="test" v-model="radioValue" native-value="a"> Option </FRadio>
+  <FRadio name="test" v-model="radioValue" :native-value="valueA">
+    Option
+  </FRadio>
   <br /><br />
-  <FRadio name="test" v-model="radioValue" native-value="b"> Option 2</FRadio>
+  <FRadio name="test" v-model="radioValue" :native-value="valueB">
+    Option 2</FRadio
+  >
   <br /><br />
   <p>{{ radioValue }}</p>
 </template>
@@ -9,6 +13,8 @@
 <script setup>
 import FRadio from "../components/radio/FRadio.vue";
 import { ref } from "vue";
-const radioValue = ref("");
+const radioValue = ref(1);
+const valueA = ref({ name: "Ammar" });
+const valueB = ref({ name: "Else" });
 console.log(radioValue.value);
 </script>

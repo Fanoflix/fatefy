@@ -1,10 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import InputShowcase from "../views/InputShowcase.vue";
-import ButtonsShowcase from "../views/ButtonsShowcase.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import NotFound from "../views/NotFound.vue";
+
+// Temporary
+import InputShowcase from "../views/InputShowcase.vue";
+import ButtonsShowcase from "../views/ButtonsShowcase.vue";
+import Quiz from "../views/Quiz.vue";
+// -------/
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +38,11 @@ const router = createRouter({
       path: "/buttonShowcase",
       name: "buttonShowcase",
       component: ButtonsShowcase,
+    },
+    {
+      path:"/quiz",
+      name: "quiz",
+      component: Quiz,
     },
     // {
     //   path: "/about",

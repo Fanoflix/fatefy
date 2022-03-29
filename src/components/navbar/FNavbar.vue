@@ -21,6 +21,13 @@
         size="sm"
         @click="$router.push('/signup')"
       />
+
+      <FButton
+        type="primary"
+        label="Quiz"
+        size="sm"
+        @click="$router.push('/quiz')"
+      />
     </div>
 
     <div class="right">

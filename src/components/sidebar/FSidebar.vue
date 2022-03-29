@@ -1,9 +1,17 @@
-// TODO Make Sidebar retractable
 <template>
-  <FContainer width="220" height="100vh" class="side-bar"></FContainer>
+  <FContainer
+    width="220"
+    height="100vh"
+    class="side-bar"
+    heading="test"
+  ></FContainer>
 </template>
 
 <script setup>
+/* 
+  TODO Make Sidebar retractable 
+  TODO Make Sidebar a separate component insteadof just a container
+*/
 import FContainer from "../container/FContainer.vue";
 </script>
 

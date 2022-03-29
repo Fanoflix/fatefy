@@ -276,8 +276,8 @@ export default {
 @import "@/assets/variables.scss";
 
 .control {
-  transition: color $element-trans-time, background-color $element-trans-time;
   // base control styling
+  transition: color $element-trans-time, background-color $element-trans-time;
   display: flex;
   flex-flow: nowrap column;
   align-items: center;

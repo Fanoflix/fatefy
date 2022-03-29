@@ -68,7 +68,9 @@ const { changeTheme } = themeStore; // same thing as the above line
   justify-content: space-around;
   width: 100%;
   height: $nav-height;
-  background-color: $card-bg-color-light;
+  background-color: $color-background;
+  border-bottom: 1px solid $card-bg-color-light;
+  border-bottom: 1px solid $white-soft2;
 
   .left {
     display: flex;
@@ -93,7 +95,8 @@ const { changeTheme } = themeStore; // same thing as the above line
 
 .dark {
   .navbar {
-    background-color: $card-bg-color-dark;
+    background-color: $color-background-dark;
+    border-bottom: 1px solid $black-soft2;
   }
 }
 </style>

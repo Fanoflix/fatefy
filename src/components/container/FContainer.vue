@@ -97,6 +97,7 @@ const containerClasses = computed(() => {
       row: props.row,
       column: props.column,
       wrap: props.wrap,
+      "heading-center": props.headingCenter,
       "p-default": props.padding == "default" || props.padding == "",
       "p-1": props.padding === "1",
       "p-2": props.padding === "2",
@@ -170,9 +171,10 @@ const cssProps = computed(() => {
   }
 
   .heading {
+    width: 100%;
     height: 30px;
-    align-self: center;
-    justify-self: center;
+    // align-self: center;
+    // justify-self: center;
   }
 }
 

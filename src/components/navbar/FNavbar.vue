@@ -5,7 +5,6 @@
         type="secondary"
         label="Home"
         size="sm"
-        transparent
         @click="$router.push('/')"
       />
 
@@ -65,17 +64,17 @@ const { changeTheme } = themeStore; // same thing as the above line
   top: 0;
 
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   height: $nav-height;
   background-color: $color-background;
-  border-bottom: 1px solid $card-bg-color-light;
-  border-bottom: 1px solid $white-soft2;
+  border-bottom: 1px solid $white-soft;
 
   .left {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: $global-aesthetic-margin;
 
     button {
       margin-right: $global-aesthetic-margin;
@@ -86,6 +85,7 @@ const { changeTheme } = themeStore; // same thing as the above line
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: $global-aesthetic-margin;
 
     button {
       margin-left: $global-aesthetic-margin;
@@ -96,7 +96,7 @@ const { changeTheme } = themeStore; // same thing as the above line
 .dark {
   .navbar {
     background-color: $color-background-dark;
-    border-bottom: 1px solid $black-soft2;
+    border-bottom: 1px solid $black-soft;
   }
 }
 </style>

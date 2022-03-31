@@ -93,8 +93,7 @@ export default {
 
 // base button styling: width, height (for sm, md, lg)
 button {
-  transition: filter $element-trans-time, color $element-trans-time,
-    background-color $element-trans-time;
+  transition: filter $element-trans-time, background-color $element-trans-time;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,11 +119,6 @@ button {
 
   padding: 0px 16px;
   font-size: 14px;
-
-  // &.transparent {
-  //   background: transparent;
-  //   border: none;
-  // }
 }
 
 // ____> TYPES <primary, secondary (dark/light), danger>
@@ -135,17 +129,9 @@ button {
     box-shadow: 0px 0px 15px rgba(0, 255, 98, 0.5);
   }
 
-  // &.dark:not(.disabled) {
-  //   box-shadow: 0px 0px 15px rgba(0, 187, 255, 0.2);
-  // } // done
-
   &.primary:not(.dark, .outlined) {
     color: $color-background;
   }
-
-  // &.dark:not(.outlined) {
-  //   color: $color-background-dark;
-  // } // done
 }
 
 .danger {
@@ -157,11 +143,6 @@ button {
   background: $secondary-light;
   color: $secondary-dark;
 }
-
-// .secondary.dark {
-//   background: $secondary-dark;
-//   color: $secondary-light;
-// } // done
 
 .important {
   background: $important;
@@ -242,25 +223,12 @@ button {
   color: $important;
 }
 
-// .outlined.secondary.dark {
-//   background: transparent;
-//   border: $global-border-size solid $secondary-light;
-//   color: $secondary-light;
-// } // done
-
 .outlined:not(.disabled, .dark) {
   &:hover {
     background: $btn-hover-light-1;
     filter: none;
   }
 }
-
-// .outlined.dark:not(.disabled) {
-//   &:hover {
-//     background: $btn-hover-light-2;
-//     filter: none;
-//   }
-// } // done
 
 .disabled {
   opacity: 0.3;
@@ -275,7 +243,7 @@ button {
   button {
     &.primary {
       &:not(.disabled) {
-        box-shadow: 0px 0px 15px rgba(0, 187, 255, 0.2);
+        box-shadow: 0px 0px 15px rgba(0, 191, 255, 0.2);
       }
 
       &:not(.outlined) {

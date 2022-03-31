@@ -40,7 +40,7 @@
     <div class="subtext" v-if="state">
       <div class="message">
         <p class="validation" v-if="state == 'error'">
-          {{ validationMessage }}
+          {{ errorMessage }}
         </p>
         <p class="success" v-else-if="state == 'success'">
           {{ successMessage }}
@@ -80,7 +80,7 @@ const emits = defineEmits(["update:modelValue"]);
 const props = defineProps({
   label: String,
   placeholder: String,
-  validationMessage: String,
+  errorMessage: String,
   successMessage: String,
   modelValue: [Number, String],
   size: {

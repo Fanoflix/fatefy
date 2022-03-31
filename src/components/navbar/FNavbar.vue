@@ -1,66 +1,69 @@
 <template>
-  <section class="navbar">
-    <div class="left">
-      <FButton
-        type="secondary"
-        label="Home"
-        size="sm"
-        @click="$router.push('/')"
-      />
+  <section :class="navbarClasses">
+    <FButton
+      size="sm"
+      label=">"
+      type="primary"
+      rounded
+      outlined
+      @click.prevent="openSideBar"
+    />
 
-      <FButton
-        type="primary"
-        label="Login"
-        size="sm"
-        @click="$router.push('/login')"
-      />
+    <div class="nav-item links">
+      <FLink type="primary" to="/"> Home </FLink>
 
-      <FButton
-        type="primary"
-        label="Signup"
-        size="sm"
-        @click="$router.push('/signup')"
-      />
+      <FLink type="primary" to="/login"> Login </FLink>
 
-      <FButton
-        type="primary"
-        label="Quiz"
-        size="sm"
-        @click="$router.push('/quiz')"
-      />
+      <FLink type="primary" to="/signup"> Signup </FLink>
+
+      <FLink type="secondary" to="/quiz"> Quiz </FLink>
     </div>
 
-    <div class="right">
-      <FButton
-        type="important"
-        label="Button Component Showcase"
-        size="sm"
-        @click="$router.push('/buttonShowcase')"
-      />
-
-      <FButton
-        type="important"
-        label="Input Component Showcase"
-        size="sm"
-        @click="$router.push('/inputShowcase')"
-      />
-
-      <f-button
-        type="secondary"
-        size="sm"
-        label="Change Theme"
-        @click="changeTheme"
-      />
-    </div>
+    <FButton
+      size="sm"
+      label="Theme"
+      type="secondary"
+      @click.prevent="changeTheme"
+      rounded
+    />
   </section>
 </template>
 
 <script setup>
+import FLink from "../link/FLink.vue";
 import FButton from "../button/FButton.vue";
 import { useThemeStore } from "../../stores/theme.js";
+import { computed } from "vue";
+import { storeToRefs } from "pinia";
 
 const themeStore = useThemeStore();
-const { changeTheme } = themeStore; // same thing as the above line
+const { changeTheme } = themeStore;
+const { isDark } = storeToRefs(themeStore); // same thing as the above line
+
+// Props
+const props = defineProps({
+  filled: {
+    type: Boolean,
+    default: false,
+  },
+  rounded: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const emits = defineEmits(["toggleSidebar"]);
+
+function openSideBar() {
+  emits("toggleSidebar");
+}
+
+const navbarClasses = computed(() => {
+  return [
+    "navbar",
+    { filled: props.filled, rounded: props.rounded, dark: isDark.value },
+  ];
+});
 </script>
 
 <style scoped lang="scss">
@@ -68,40 +71,69 @@ const { changeTheme } = themeStore; // same thing as the above line
 .navbar {
   z-index: $z-top;
   position: sticky;
-  top: 0;
+  top: $global-aesthetic-margin;
+  margin: 0 $global-aesthetic-margin;
+  padding: $global-padding;
+  min-width: 300px;
 
   display: flex;
   justify-content: space-between;
-  width: 100%;
   height: $nav-height;
-  background-color: $color-background;
-  border-bottom: 1px solid $white-soft;
 
-  .left {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: $global-aesthetic-margin;
-
-    button {
-      margin-right: $global-aesthetic-margin;
-    }
+  &.filled {
+    background-color: $panel-bg-color-light;
+    border: none;
   }
 
-  .right {
+  &:not(.filled) {
+    background-color: $color-background;
+    border-bottom: 1px solid $white-soft;
+  }
+
+  &.rounded {
+    border-radius: $global-border-radius;
+  }
+
+  .nav-item {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: $global-aesthetic-margin;
 
-    button {
-      margin-left: $global-aesthetic-margin;
+    .links {
+      margin: $global-aesthetic-margin;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid transparent;
+      transition: background-color $element-trans-time ease-in;
+      height: $nav-height;
+      min-width: $nav-item-width;
+      &.router-link-active {
+        border-bottom: 1px solid $black;
+        background-color: $secondary-light;
+        color: $black;
+      }
     }
   }
 }
 
-.dark {
-  .navbar {
+.dark.navbar {
+  a {
+    &.router-link-active {
+      border-bottom: 1px solid $primary;
+      background-color: $secondary-dark;
+      color: $primary;
+    }
+  }
+  &.filled {
+    background-color: $panel-bg-color-dark;
+    border: none;
+  }
+
+  &:not(.filled) {
     background-color: $color-background-dark;
     border-bottom: 1px solid $black-soft;
   }

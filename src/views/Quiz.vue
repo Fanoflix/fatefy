@@ -1,13 +1,15 @@
 <template>
-  <FRadio name="test" v-model="radioValue" :native-value="valueA">
-    Option
-  </FRadio>
-  <br /><br />
-  <FRadio name="test" v-model="radioValue" :native-value="valueB">
-    Option 2</FRadio
-  >
-  <br /><br />
-  <p>{{ radioValue }}</p>
+  <section class="quiz">
+    <FRadio name="test" v-model="radioValue" :native-value="valueA">
+      Option
+    </FRadio>
+    <br /><br />
+    <FRadio name="test" v-model="radioValue" :native-value="valueB">
+      Option 2</FRadio
+    >
+    <br /><br />
+    <p>{{ radioValue }}</p>
+  </section>
 </template>
 
 <script setup>

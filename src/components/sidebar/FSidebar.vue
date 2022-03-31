@@ -1,5 +1,9 @@
 <template>
-  <section class="side-bar" :class="[{ dark: isDark }]"></section>
+  <section ref="sidebar" class="side-bar" :class="sidebarClasses">
+    <FLink type="secondary" to="/buttonShowcase"> Buttons </FLink>
+
+    <FLink type="secondary" to="/inputShowcase"> Inputs </FLink>
+  </section>
 </template>
 
 <script setup>
@@ -8,14 +12,48 @@
 */
 
 // Imports
+import FLink from "../link/FLink.vue";
 import { storeToRefs } from "pinia";
+import { computed, ref } from "vue";
 import { useThemeStore } from "../../stores/theme";
 
 // State
 
 // Reactive State
-
 const { isDark } = storeToRefs(useThemeStore());
+const sidebar = ref(null);
+
+// Props
+const props = defineProps({
+  isVisible: {
+    type: Boolean,
+    default: false,
+  },
+  filled: {
+    type: Boolean,
+    default: false,
+  },
+  rounded: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+// Exposed
+defineExpose({
+  sidebar,
+});
+
+const sidebarClasses = computed(() => {
+  return [
+    {
+      visible: props.isVisible,
+      filled: props.filled,
+      rounded: props.rounded,
+      dark: isDark.value,
+    },
+  ];
+});
 </script>
 
 <style scoped lang="scss">
@@ -23,17 +61,50 @@ const { isDark } = storeToRefs(useThemeStore());
 .side-bar {
   z-index: $z-top;
   position: fixed;
-  top: $nav-height;
-  left: 0;
+  top: $nav-height + (2 * $global-aesthetic-margin);
+  left: $global-aesthetic-margin;
+  bottom: $global-aesthetic-margin;
+  padding: 10px $global-padding;
 
-  background-color: $color-background;
-  border-right: 1px solid $white-soft;
-  width: 220px;
-  height: 100vh;
+  transition: transform $element-trans-time;
+  -webkit-transform: translateX(-105%);
+  transform: translateX(-105%);
+
+  min-width: $nav-width;
+  max-width: $nav-width + 20px;
+
+  display: flex;
+  flex-flow: wrap column;
+
+  &.visible {
+    -webkit-transform: none;
+    transform: none;
+  }
+
+  &.filled {
+    background-color: $panel-bg-color-light;
+    border: none;
+  }
+
+  &:not(.filled) {
+    background-color: $color-background;
+    border-right: 1px solid $white-soft;
+  }
+
+  &.rounded {
+    border-radius: $global-border-radius;
+  }
 }
 
 .dark.side-bar {
-  background-color: $color-background-dark;
-  border-right: 1px solid $black-soft;
+  &.filled {
+    background-color: $panel-bg-color-dark;
+    border: none;
+  }
+
+  &:not(.filled) {
+    background-color: $color-background-dark;
+    border-right: 1px solid $black-soft;
+  }
 }
 </style>

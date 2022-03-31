@@ -4,7 +4,6 @@
       <h1>Login</h1>
     </main>
   </section>
-  <!-- container component or an inline form declaration here -->
 </template>
 
 <script setup>

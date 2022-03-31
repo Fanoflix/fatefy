@@ -103,8 +103,8 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .signup {
-  margin-top: 15px;
-  padding: 15px;
+  // margin-top: 15px;
+  // padding: 15px;
 
   width: 460px;
 

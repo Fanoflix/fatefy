@@ -16,7 +16,7 @@
           label="Description"
           type="textarea"
           success-message="Name is available!"
-          validation-message="Name should be of minimum 7 characters"
+          error-message="Name should be of minimum 7 characters"
           size="sm"
           rounded
           bordered
@@ -29,7 +29,7 @@
           label="Description"
           type="textarea"
           success-message="Name is available!"
-          validation-message="Name should be of minimum 7 characters"
+          error-message="Name should be of minimum 7 characters"
           size="md"
           rounded
           bordered
@@ -42,7 +42,7 @@
           label="Description"
           type="textarea"
           success-message="Name is available!"
-          validation-message="Name should be of minimum 7 characters"
+          error-message="Name should be of minimum 7 characters"
           size="lg"
           rounded
           bordered
@@ -62,7 +62,7 @@
           label="Name"
           type="text"
           success-message="Name is available!"
-          validation-message="Name should be of minimum 7 characters"
+          error-message="Name should be of minimum 7 characters"
           lazy
           rounded
           size="md"
@@ -75,7 +75,7 @@
           label="Name"
           type="text"
           success-message="Name is available!"
-          validation-message="Name should be of minimum 7 characters"
+          error-message="Name should be of minimum 7 characters"
           bordered
           lazy
           rounded
@@ -94,7 +94,7 @@
           label="Name"
           type="text"
           success-message="Name is available!"
-          validation-message="Name should be of minimum 7 characters"
+          error-message="Name should be of minimum 7 characters"
           bordered
           lazy
           size="sm"
@@ -107,7 +107,7 @@
           label="Name"
           type="text"
           success-message="Name is available!"
-          validation-message="Name should be of minimum 7 characters"
+          error-message="Name should be of minimum 7 characters"
           lazy
           size="sm"
           rounded
@@ -141,10 +141,10 @@ div {
   display: flex;
   flex-wrap: wrap;
 
-  max-width: 1000px;
+  max-width: 500px;
 }
 
 form {
-  width: 800px;
+  width: 500px;
 }
 </style>

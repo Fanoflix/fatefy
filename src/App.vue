@@ -1,22 +1,29 @@
 <template>
-  <FNavbar />
-  <FSidebar />
+  <FNavbar @toggleSidebar="toggleSidebar" filled rounded />
+  <FSidebar ref="sidebar" :isVisible="isSideBarVisible" filled rounded />
 
-  <div class="current-view">
-    <RouterView />
-  </div>
+  <!-- Make this a component later-->
+  <RouterView v-slot="{ Component }">
+    <div class="current-view">
+      <Transition name="fade" mode="out-in">
+        <component :is="Component"> </component>
+      </Transition>
+    </div>
+  </RouterView>
 </template>
 
 <script setup>
 import { RouterView } from "vue-router";
 import { useThemeStore } from "./stores/theme.js";
-import { onBeforeMount } from "vue";
+import { onBeforeMount, ref } from "vue";
 import FNavbar from "./components/navbar/FNavbar.vue";
 import FSidebar from "./components/sidebar/FSidebar.vue";
 
-const themeStore = useThemeStore();
 let body = document.querySelector("body");
+const themeStore = useThemeStore();
 const { setIsDark } = themeStore; // same thing as the above line
+const sidebar = ref(null);
+const isSideBarVisible = ref(false);
 
 onBeforeMount(() => {
   let storedIsDark = JSON.parse(localStorage.getItem("isDark"));
@@ -25,6 +32,10 @@ onBeforeMount(() => {
     setIsDark(storedIsDark);
   }
 });
+
+function toggleSidebar() {
+  isSideBarVisible.value = !isSideBarVisible.value;
+}
 
 // changing Body's background color according to isDark in store theme.js
 themeStore.$subscribe((_, state) => {
@@ -64,10 +75,28 @@ themeStore.$subscribe((_, state) => {
 }
 
 .current-view {
-  width: 100%;
-  min-height: 90vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
+
+  padding: 15px;
+
+  min-height: calc(98vh - ($nav-height + (3 * $global-aesthetic-margin)));
+  margin: 0px $global-aesthetic-margin;
+  margin-top: (2 * $global-aesthetic-margin);
+  margin-bottom: (2 * $global-aesthetic-margin);
+  border-radius: 5px;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-12px) scale(0.99);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: transform 0.125s ease-in-out, opacity 0.125s ease-in-out;
 }
 </style>

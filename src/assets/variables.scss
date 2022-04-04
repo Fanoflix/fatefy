@@ -4,6 +4,8 @@ $global-border-size: 1px;
 $global-border-radius: 5px;
 $global-aesthetic-margin: 10px;
 
+$global-center-content-width: 520px;
+
 // Global transition variables
 $text-and-bg-trans-time: 0.25s;
 $element-trans-time: 0.125s;
@@ -108,14 +110,14 @@ $scroll-track-color-dark: $color-background-dark;
 /*
   Inputs
 */
-$input-error-shadow: inset 0px 0px 15px -8px $error;
+$input-error-shadow: inset 0px 0px 25px -15px $error;
 
 // light
-$input-success-shadow-light: inset 0px 0px 15px -8px $success-light;
+$input-success-shadow-light: inset 0px 0px 25px -12px $success-light;
 
 // dark
 $input-success-border-dark: #6abe97;
-$input-success-shadow-dark: inset 0px 0px 15px -8px $success-dark;
+$input-success-shadow-dark: inset 0px 0px 35px -25px $success-dark;
 
 /*
   Container

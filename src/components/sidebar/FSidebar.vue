@@ -67,8 +67,8 @@ const sidebarClasses = computed(() => {
   padding: 10px $global-padding;
 
   transition: transform $element-trans-time;
-  -webkit-transform: translateX(-105%);
-  transform: translateX(-105%);
+  -webkit-transform: translateX(-115%);
+  transform: translateX(-115%);
 
   min-width: $nav-width;
   max-width: $nav-width + 20px;

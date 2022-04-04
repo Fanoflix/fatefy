@@ -65,6 +65,19 @@
           error-message="Name should be of minimum 7 characters"
           lazy
           rounded
+          size="lg"
+          state="success"
+          v-model="testVal"
+        />
+        <br />
+        <FInput
+          placeholder="Full Name"
+          label="Name"
+          type="text"
+          success-message="Name is available!"
+          error-message="Name should be of minimum 7 characters"
+          lazy
+          rounded
           size="md"
           state="error"
           v-model="testVal"
@@ -100,6 +113,7 @@
           size="sm"
           rounded
           v-model="testVal"
+          state="success"
         />
         <br />
         <FInput
@@ -111,6 +125,7 @@
           lazy
           size="sm"
           rounded
+          state="success"
           v-model="testVal"
         />
       </div>
@@ -132,19 +147,24 @@ let printValue = () => {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/variables.scss";
 button {
   margin: 4px 7px;
   margin-left: 0;
+}
+
+section {
+  width: $global-center-content-width;
 }
 
 div {
   display: flex;
   flex-wrap: wrap;
 
-  max-width: 500px;
+  width: 100%;
 }
 
 form {
-  width: 500px;
+  width: 100%;
 }
 </style>

@@ -2,7 +2,7 @@
  > A lightweight, responsive, minimalistic and customizable library of UI components for [Vue3][1].
  
 ## Features
-- Minimalistic UI, with simple and quick animations.
+- Minimalistic UI, with simple and fluid animations.
 - All colours, transitions and fonts are easily customizable.
 
 

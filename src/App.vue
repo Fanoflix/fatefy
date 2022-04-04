@@ -92,7 +92,7 @@ themeStore.$subscribe((_, state) => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(-12px) scale(0.99);
+  transform: translateY(-15px) scale(1);
 }
 
 .fade-enter-active,

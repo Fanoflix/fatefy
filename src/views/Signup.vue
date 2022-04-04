@@ -102,11 +102,13 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/variables.scss";
+
 .signup {
   // margin-top: 15px;
   // padding: 15px;
 
-  width: 460px;
+  width: $global-center-content-width;
 
   display: flex;
   align-items: center;

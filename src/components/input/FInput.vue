@@ -310,7 +310,7 @@ export default {
     border: $global-border-size solid transparent;
     color: $black;
 
-    padding: 4px 10px;
+    padding: 6px 10px;
 
     height: 44px;
     width: 100%;
@@ -365,8 +365,8 @@ export default {
 
     &.lg {
       height: 62px;
-      font-size: 18px;
-      font-weight: 300;
+      font-size: 28px;
+      font-weight: 200;
     }
   }
 

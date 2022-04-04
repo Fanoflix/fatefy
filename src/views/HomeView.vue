@@ -3,7 +3,7 @@
     <main><h1>Home</h1></main>
     <FContainer
       heading="Test"
-      padding="3"
+      padding="2"
       width="500px"
       height="600px"
       heading-center

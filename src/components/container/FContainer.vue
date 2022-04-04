@@ -1,6 +1,6 @@
 <template>
   <div :style="cssProps" :class="[containerClasses, customClasses]">
-    <h2 class="heading" v-if="heading">
+    <h2 class="heading" :class="headingClasses" v-if="heading">
       {{ heading }}
     </h2>
 
@@ -38,10 +38,15 @@ const props = defineProps({
     type: String,
     default: null,
   },
-  // structure
+  // indexText: {
+  //   type: String,
+  //   default: null,
+  // },
+
+  /* Structure */
   width: {
     type: String,
-    default: "300",
+    default: "100%",
   },
   wrap: {
     type: Boolean,
@@ -49,7 +54,7 @@ const props = defineProps({
   },
   height: {
     type: String,
-    default: "500",
+    default: "auto",
   },
   row: {
     type: Boolean,
@@ -76,7 +81,6 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  // [tentative]
   padding: {
     type: String,
     default: "default", // 1, 2, 3
@@ -92,7 +96,7 @@ const props = defineProps({
 // Computed
 const containerClasses = computed(() => {
   return [
-    "fcontainer",
+    "f-container",
     {
       row: props.row,
       column: props.column,
@@ -110,10 +114,17 @@ const containerClasses = computed(() => {
   ];
 });
 
+// const headingClasses = computed(() => {
+//   return {
+//     indexed: props.indexText !== null,
+//   };
+// });
+
 const cssProps = computed(() => {
   return {
     "--width": props.width,
     "--height": props.height,
+    "--indexText": props.indexText,
   };
 });
 
@@ -123,7 +134,7 @@ const cssProps = computed(() => {
 <style scoped lang="scss">
 @import "@/assets/variables.scss";
 
-.fcontainer {
+.f-container {
   // base styling for container
   width: var(--width);
   height: var(--height);
@@ -159,7 +170,7 @@ const cssProps = computed(() => {
     padding: 10px $container-default-padding;
   }
   &.p-1 {
-    padding: 0.6rem 1rem;
+    padding: 1rem 1.4rem;
   }
 
   &.p-2 {
@@ -172,14 +183,16 @@ const cssProps = computed(() => {
 
   .heading {
     width: 100%;
-    height: 30px;
-    // align-self: center;
-    // justify-self: center;
+    line-height: 1.3;
+    font-size: 16px;
+    font-weight: 600;
+
+    margin-bottom: $global-aesthetic-margin;
   }
 }
 
 .dark {
-  .fcontainer {
+  .f-container {
     background: $container-bg-color-dark;
   }
 }

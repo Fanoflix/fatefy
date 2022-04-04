@@ -3,7 +3,7 @@
     <FButton
       size="sm"
       label=">"
-      type="primary"
+      type="secondary"
       rounded
       outlined
       @click.prevent="openSideBar"
@@ -71,8 +71,8 @@ const navbarClasses = computed(() => {
 .navbar {
   z-index: $z-top;
   position: sticky;
-  top: $global-aesthetic-margin;
-  margin: 0 $global-aesthetic-margin;
+  top: 0;
+  margin: 0;
   padding: $global-padding;
   min-width: 300px;
 

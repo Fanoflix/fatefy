@@ -10,7 +10,7 @@
     <input
       ref="input"
       type="radio"
-      class="f-radio"
+      v-bind="attrs"
       :class="inputClasses"
       v-model="computedValue"
       :value="nativeValue"
@@ -23,7 +23,7 @@
 <script setup>
 // Imports
 import { storeToRefs } from "pinia";
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, useAttrs } from "vue";
 import { useThemeStore } from "../../stores/theme";
 
 // State
@@ -33,6 +33,7 @@ const newValue = ref(props.modelValue);
 const input = ref(null);
 const themeStore = useThemeStore();
 const { isDark } = storeToRefs(themeStore);
+const attrs = useAttrs();
 
 // Props
 const props = defineProps({
@@ -51,10 +52,6 @@ const props = defineProps({
     default: "radio",
   },
   rounded: {
-    type: Boolean,
-    default: false,
-  },
-  disabled: {
     type: Boolean,
     default: false,
   },
@@ -96,7 +93,7 @@ const controlClasses = computed(() => {
     "no-select",
     {
       rounded: props.rounded,
-      disabled: props.disabled,
+      disabled: isDisabled.value,
       required: props.required,
       dark: isDark.value,
     },
@@ -109,19 +106,34 @@ const inputClasses = computed(() => {
     },
   ];
 });
+
+const isDisabled = computed(() => {
+  return (
+    attrs.disabled !== undefined &&
+    attrs.disabled !== false &&
+    attrs.disabled !== "false"
+  );
+});
+</script>
+
+<!-- inheritAttrs: false -->
+<script>
+export default {
+  inheritAttrs: false,
+};
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/variables.scss";
 .radio-control {
-  &:hover {
+  &:hover:not(.checked) {
     background-color: $white-soft;
   }
   cursor: pointer;
 
-  padding: (2 * $global-padding) ($global-padding + 4px);
+  padding: (1.5 * $global-padding) ($global-padding + 4px);
   font-size: 14px;
-  margin: 2px;
+  margin: 1px;
   line-height: 1.3;
 
   display: flex;
@@ -129,18 +141,48 @@ const inputClasses = computed(() => {
   &.rounded {
     border-radius: $global-border-radius;
   }
-  .f-radio {
+
+  &.checked {
+    background-color: black;
+  }
+
+  input {
     display: inline-flex;
     cursor: pointer;
     margin-right: $global-aesthetic-margin;
     margin-top: 3px;
   }
+
+  input[type="radio"]::after {
+    content: "";
+    width: 15px;
+
+    border-radius: 15px;
+    border: 1px solid $black-mute;
+    background-color: transparent;
+  }
+
+  input[type="radio"]:checked::after {
+    outline: 2px solid $primary;
+    border: 2px solid rgb(255, 255, 255);
+    background-color: $primary;
+  }
 }
 
 .dark.radio-control {
-  &:hover,
-  &:active {
+  &:hover:not(.checked) {
     background-color: $black-soft;
+  }
+
+  input[type="radio"]::after {
+    border: 1px solid rgb(169, 169, 169);
+    background-color: $secondary-dark;
+  }
+
+  input[type="radio"]:checked::after {
+    outline: 2px solid $primary;
+    border: 2px solid black;
+    background-color: $primary;
   }
 }
 </style>

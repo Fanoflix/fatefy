@@ -61,9 +61,9 @@ const sidebarClasses = computed(() => {
 .side-bar {
   z-index: $z-top;
   position: fixed;
-  top: $nav-height + (2 * $global-aesthetic-margin);
-  left: $global-aesthetic-margin;
-  bottom: $global-aesthetic-margin;
+  top: $nav-height;
+  left: 0;
+  bottom: 0;
   padding: 10px $global-padding;
 
   transition: transform $element-trans-time;

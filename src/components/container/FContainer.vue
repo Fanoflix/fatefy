@@ -1,6 +1,6 @@
 <template>
   <div :style="cssProps" :class="[containerClasses, customClasses]">
-    <h2 class="heading" :class="headingClasses" v-if="heading">
+    <h2 class="heading" v-if="heading">
       {{ heading }}
     </h2>
 
@@ -170,15 +170,15 @@ const cssProps = computed(() => {
     padding: 10px $container-default-padding;
   }
   &.p-1 {
-    padding: 1rem 1.4rem;
+    padding: 1.4rem;
   }
 
   &.p-2 {
-    padding: 1rem 2rem;
+    padding: 1.7rem;
   }
 
   &.p-3 {
-    padding: 1.2rem 3rem;
+    padding: 2.2rem;
   }
 
   .heading {

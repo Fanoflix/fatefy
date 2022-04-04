@@ -63,7 +63,7 @@
         />
       </div>
       <div class="buttons">
-        <FButton label="Create Account" size="lg" rounded />
+        <FButton label="Create Account" size="md" rounded />
       </div>
     </form>
   </section>

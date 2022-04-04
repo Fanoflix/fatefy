@@ -33,7 +33,6 @@
           size="md"
           rounded
           bordered
-          state="error"
           minlength="7"
           v-model="testVal"
         />
@@ -46,7 +45,6 @@
           size="lg"
           rounded
           bordered
-          state="success"
           minlength="7"
           v-model="testVal"
         />
@@ -66,7 +64,6 @@
           lazy
           rounded
           size="lg"
-          state="success"
           v-model="testVal"
         />
         <br />
@@ -89,7 +86,6 @@
           type="text"
           success-message="Name is available!"
           error-message="Name should be of minimum 7 characters"
-          bordered
           lazy
           rounded
           size="md"
@@ -113,7 +109,6 @@
           size="sm"
           rounded
           v-model="testVal"
-          state="success"
         />
         <br />
         <FInput

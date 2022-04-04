@@ -1,6 +1,6 @@
 <template>
-  <FNavbar @toggleSidebar="toggleSidebar" filled rounded />
-  <FSidebar ref="sidebar" :isVisible="isSideBarVisible" filled rounded />
+  <FNavbar @toggleSidebar="toggleSidebar" filled />
+  <FSidebar ref="sidebar" :isVisible="isSideBarVisible" filled />
 
   <!-- Make this a component later-->
   <RouterView v-slot="{ Component }">
@@ -97,6 +97,6 @@ themeStore.$subscribe((_, state) => {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: transform 0.125s ease-in-out, opacity 0.125s ease-in-out;
+  transition: transform 0.075s linear, opacity 0.1s ease-in-out;
 }
 </style>

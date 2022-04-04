@@ -20,7 +20,7 @@ $secondary-dark: #373737;
 $danger: #92304a;
 $important: #005fa7;
 
-$success-light: #339900;
+$success-light: #3db600;
 $success-dark: #61c998;
 $error: #c0304f;
 
@@ -113,7 +113,7 @@ $scroll-track-color-dark: $color-background-dark;
 $input-error-shadow: inset 0px 0px 25px -15px $error;
 
 // light
-$input-success-shadow-light: inset 0px 0px 25px -12px $success-light;
+$input-success-shadow-light: inset 0px 0px 15px -10px $success-light;
 
 // dark
 $input-success-border-dark: #6abe97;

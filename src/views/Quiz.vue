@@ -6,20 +6,32 @@
       rounded
       padding="1"
     >
-      <FRadio rounded name="test" v-model="radioValue" :native-value="valueA">
+      <FRadio rounded name="1" v-model="radioValue" :native-value="valueA">
         Strongly Agree
       </FRadio>
-      <FRadio rounded name="test" v-model="radioValue" :native-value="valueB">
+      <FRadio rounded name="1" v-model="radioValue" :native-value="valueB">
         Agree
       </FRadio>
-      <FRadio rounded name="test" v-model="radioValue" :native-value="valueC">
+      <FRadio rounded name="1" v-model="radioValue" :native-value="valueC">
         Disagree
       </FRadio>
-      <FRadio rounded name="test" v-model="radioValue" :native-value="valueD">
+      <FRadio rounded name="1" v-model="radioValue" :native-value="valueD">
         I do not have a strong feeling about this one. I might have to check and
         confirm
       </FRadio>
-      <p>{{ radioValue }}</p>
+    </FContainer>
+
+    <FContainer
+      class="question"
+      heading="How regular are Code Reviews at your company?"
+      rounded
+      padding="1"
+    >
+      <FRadio rounded name="2"> Daily or every 2 days </FRadio>
+      <FRadio rounded name="2"> Twice a week </FRadio>
+      <FRadio rounded name="2"> Weekly </FRadio>
+      <FRadio rounded name="2"> Monthly </FRadio>
+      <FRadio rounded name="2"> Occasionally </FRadio>
     </FContainer>
 
     <FContainer

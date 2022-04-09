@@ -183,7 +183,7 @@ const cssProps = computed(() => {
 
   .heading {
     width: 100%;
-    line-height: 1.3;
+    line-height: 1.4;
     font-size: 16px;
     font-weight: 600;
 

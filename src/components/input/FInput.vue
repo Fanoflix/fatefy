@@ -21,7 +21,7 @@
       v-else
       ref="textarea"
       class="textarea"
-      :class="[validatedType, inputClasses, customClasses]"
+      :class="[inputClasses, customClasses]"
       v-bind="attrs"
       :placeholder="placeholder"
       :value="computedValue"
@@ -37,7 +37,7 @@
       @click="onIconClick"
     />
 
-    <div class="subtext" v-if="state">
+    <div class="subtext">
       <div class="message">
         <p class="validation" v-if="state == 'error'">
           {{ errorMessage }}
@@ -102,6 +102,10 @@ const props = defineProps({
   type: {
     type: String,
     default: "text",
+  },
+  scale: {
+    type: String,
+    default: null, // "x", "y"
   },
   state: {
     type: String,
@@ -208,6 +212,8 @@ const inputClasses = computed(() => {
     props.size,
     props.state,
     {
+      "scale-x": validatedType.value === "textarea" && props.scale === "x",
+      "scale-y": validatedType.value === "textarea" && props.scale === "y",
       rounded: props.rounded,
       bordered: props.bordered,
       dark: isDark.value,
@@ -321,6 +327,14 @@ export default {
     transition: color $element-trans-time, background-color $element-trans-time,
       box-shadow 0.2s ease;
 
+    &.scale-x {
+      resize: horizontal;
+    }
+
+    &.scale-y {
+      resize: vertical;
+    }
+
     &:focus {
       outline: 1px solid rgb(0, 0, 0);
     }
@@ -373,17 +387,17 @@ export default {
   .textarea {
     // size: sm, md, lg
     &.sm {
-      height: 56px;
+      min-height: 56px;
       font-size: 14px;
     }
 
     &.md {
-      height: 74px;
+      min-height: 74px;
       font-size: 15px;
     }
 
     &.lg {
-      height: 98px;
+      min-height: 98px;
       font-size: 18px;
       font-weight: 300;
     }

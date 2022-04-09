@@ -24,6 +24,7 @@
           minlength="7"
           v-model="testVal"
         />
+        Scale XY
         <FInput
           placeholder="Text Area"
           label="Description"
@@ -35,7 +36,9 @@
           bordered
           minlength="7"
           v-model="testVal"
+          scale="y"
         />
+        Scale Y
         <FInput
           placeholder="Text Area"
           label="Description"
@@ -47,7 +50,9 @@
           bordered
           minlength="7"
           v-model="testVal"
+          scale="x"
         />
+        Scale X
       </div>
 
       <br />
@@ -58,7 +63,8 @@
         <FInput
           placeholder="Full Name"
           label="Name"
-          type="text"
+          type="number"
+          min="0"
           success-message="Name is available!"
           error-message="Name should be of minimum 7 characters"
           lazy

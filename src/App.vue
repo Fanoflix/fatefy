@@ -92,11 +92,11 @@ themeStore.$subscribe((_, state) => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(-15px) scale(1);
+  transform: translateY(4px);
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: transform 0.075s linear, opacity 0.1s ease-in-out;
+  transition: transform 0.075s linear, opacity 0.1s ease-out;
 }
 </style>

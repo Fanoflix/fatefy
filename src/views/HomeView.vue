@@ -1,31 +1,14 @@
 <template>
-  <section>
-    <main><h1>Home</h1></main>
-    <FContainer
-      heading="Test"
-      padding="2"
-      width="500px"
-      height="600px"
-      heading-center
-      rounded
-      wrap
-      class="test"
-    >
-      <p>testing</p>
+  <div>
+    <h1>Hello</h1>
+    <h2>I am Muhammad Ammar</h2>
 
-      <div>
-        <FButton label="test" expanded type="primary" rounded></FButton>
-        <FButton label="test" type="secondary" rounded></FButton>
-        <FButton label="test" type="important" rounded></FButton>
-        <FButton label="test" type="danger" rounded></FButton>
-
-        <FButton label="test" type="primary" rounded outlined></FButton>
-        <FButton label="test" type="secondary" rounded outlined></FButton>
-        <FButton label="test" type="important" rounded outlined></FButton>
-        <FButton label="test" type="danger" rounded outlined></FButton>
-      </div>
-    </FContainer>
-  </section>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste, expedita
+      mollitia sint unde ex minima quibusdam animi fugit odit molestiae sed
+      quasi sit, tempore ipsam officiis! Temporibus excepturi vel odit.
+    </p>
+  </div>
 </template>
 
 <script setup>
@@ -35,6 +18,8 @@ import { ref } from "vue";
 </script>
 
 <style lang="scss" scoped>
-.test {
+@import "@/assets/variables.scss";
+div {
+  width: $global-center-content-width;
 }
 </style>

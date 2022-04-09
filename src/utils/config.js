@@ -1,6 +1,6 @@
 let config = {
   allowedButtonSizes: ["sm", "md", "lg"], // unused
-  allowedInputTypes: ["password", "email", "text"],
+  allowedInputTypes: ["text", "textarea", "number", "password", "email"],
 };
 
 export { config as default };

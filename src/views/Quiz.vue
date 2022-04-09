@@ -23,7 +23,7 @@
 
     <FContainer
       class="question"
-      heading="How regular are Code Reviews at your company?"
+      heading="How regular are Code Reviews at the company you currently work in?"
       rounded
       padding="1"
     >
@@ -31,7 +31,7 @@
       <FRadio rounded name="2"> Twice a week </FRadio>
       <FRadio rounded name="2"> Weekly </FRadio>
       <FRadio rounded name="2"> Monthly </FRadio>
-      <FRadio rounded name="2"> Occasionally </FRadio>
+      <FRadio disabled rounded name="2"> Occasionally </FRadio>
     </FContainer>
 
     <FContainer
@@ -40,7 +40,15 @@
       heading="3. Any comments or notes regarding Code Review?"
       padding="1"
     >
-      <FInput rounded type="textarea" placeholder="Your answer" />
+      <FInput
+        rounded
+        type="textarea"
+        scale="y"
+        size="sm"
+        has-counter
+        maxlength="50"
+        placeholder="Your answer"
+      />
     </FContainer>
 
     <br /><br />

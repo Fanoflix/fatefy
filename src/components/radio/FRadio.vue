@@ -102,7 +102,7 @@ const controlClasses = computed(() => {
 const inputClasses = computed(() => {
   return [
     {
-      disabled: props.disabled,
+      disabled: isDisabled.value,
     },
   ];
 });

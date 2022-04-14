@@ -3,7 +3,7 @@
     ref="label"
     @click="focus"
     @keydown.prevent.enter="$refs.label.click()"
-    :disabled="disabled"
+    :disabled="isDisabled"
     class="radio-control"
     :class="controlClasses"
   >

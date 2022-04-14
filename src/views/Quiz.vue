@@ -2,53 +2,35 @@
   <section class="quiz">
     <FContainer
       class="question"
-      :heading="`${index}. Most Local Companies do not do Code Review.`"
-      rounded
       padding="1"
-    >
-      <FRadio rounded name="1" v-model="radioValue" :native-value="valueA">
-        Strongly Agree
-      </FRadio>
-      <FRadio rounded name="1" v-model="radioValue" :native-value="valueB">
-        Agree
-      </FRadio>
-      <FRadio rounded name="1" v-model="radioValue" :native-value="valueC">
-        Disagree
-      </FRadio>
-      <FRadio rounded name="1" v-model="radioValue" :native-value="valueD">
-        I do not have a strong feeling about this one. I might have to check and
-        confirm
-      </FRadio>
-    </FContainer>
-
-    <FContainer
-      class="question"
-      heading="How regular are Code Reviews at the company you currently work in?"
       rounded
-      padding="1"
+      v-for="(question, idx) in data.survey.questions"
+      :key="question.id"
+      :heading="`${idx + 1}. ${question.title}`"
     >
-      <FRadio rounded name="2"> Daily or every 2 days </FRadio>
-      <FRadio rounded name="2"> Twice a week </FRadio>
-      <FRadio rounded name="2"> Weekly </FRadio>
-      <FRadio rounded name="2"> Monthly </FRadio>
-      <FRadio disabled rounded name="2"> Occasionally </FRadio>
-    </FContainer>
-
-    <FContainer
-      class="question"
-      rounded
-      heading="3. Any comments or notes regarding Code Review?"
-      padding="1"
-    >
-      <FInput
-        rounded
-        type="textarea"
-        scale="y"
-        size="sm"
-        has-counter
-        maxlength="50"
-        placeholder="Your answer"
-      />
+      <span v-if="question.type == 'radio'">
+        <FRadio
+          rounded
+          :name="question.id"
+          v-for="choice in question.questionChoices"
+          :key="choice.id"
+          :native-value="choice.id"
+        >
+          {{ choice.choiceText }}
+        </FRadio>
+      </span>
+      <span v-else>
+        <FInput
+          rounded
+          :label="
+            question.subtext ? `Required. ${question.subtext}` : 'Required'
+          "
+          :type="question.type"
+          scale="y"
+          size="md"
+          :required="question.required"
+        />
+      </span>
     </FContainer>
 
     <br /><br />
@@ -59,15 +41,19 @@
 import FRadio from "../components/radio/FRadio.vue";
 import FContainer from "../components/container/FContainer.vue";
 import FInput from "../components/input/FInput.vue";
+import { useAxios } from "@/composables/useAxios.js";
+import { onBeforeMount, onMounted, ref } from "vue";
+import { onBeforeRouteLeave } from "vue-router";
 
-import { ref } from "vue";
 const radioValue = ref(null);
 const index = "2";
 const valueA = ref("StronglyYY Agree");
 const valueB = ref("Agree");
 const valueC = ref("Disagree");
 const valueD = ref("Strongly Disagree");
-console.log(radioValue.value);
+
+const { data, isLoading, error } = useAxios("http://localhost:5000/survey/1");
+onMounted(() => {});
 </script>
 
 <style scoped lang="scss">

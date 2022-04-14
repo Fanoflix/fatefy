@@ -296,9 +296,10 @@ export default {
   .input-label {
     display: block;
     align-self: flex-start;
-    text-transform: capitalize;
+    // text-transform: capitalize;
 
-    line-height: 1.3;
+    line-height: 1.1;
+    margin-bottom: 6px;
     font-weight: 500;
     font-size: 14px;
     color: $label-light;

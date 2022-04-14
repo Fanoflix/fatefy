@@ -40,7 +40,7 @@ const props = defineProps({
   modelValue: [String, Number, Boolean, Function, Object, Array],
   nativeValue: [String, Number, Boolean, Function, Object, Array],
   name: {
-    type: String,
+    type: [String, Number],
     required: true,
   },
   size: {

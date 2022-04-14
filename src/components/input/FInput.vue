@@ -299,7 +299,8 @@ export default {
     // text-transform: capitalize;
 
     line-height: 1.1;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    margin-left: 2px;
     font-weight: 500;
     font-size: 14px;
     color: $label-light;

@@ -2,13 +2,14 @@ import { ref, shallowRef } from "vue";
 import axios from "axios";
 
 export const useAxios = (url, config = {}) => {
-  const data = shallowRef(null);
+  const data = ref(null);
   const response = ref(null);
   const isLoading = ref(false);
   const isFinished = ref(false);
   const aborted = ref(false);
   const error = ref(null);
 
+  // todo
   // const abort = (message) => {
   //   if (isFinished.value || !isLoading.value) return;
   // };
@@ -36,5 +37,5 @@ export const useAxios = (url, config = {}) => {
 
   !config.skip && fetch();
 
-  return { response, error, data, isLoading, fetch };
+  return { response, error, data, isLoading, isFinished, fetch };
 };

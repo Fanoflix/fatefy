@@ -1,5 +1,5 @@
 <template>
-  <section class="quiz">
+  <section class="quiz" v-if="isFinished">
     <FContainer
       class="question"
       padding="1"
@@ -42,18 +42,10 @@ import FRadio from "../components/radio/FRadio.vue";
 import FContainer from "../components/container/FContainer.vue";
 import FInput from "../components/input/FInput.vue";
 import { useAxios } from "@/composables/useAxios.js";
-import { onBeforeMount, onMounted, ref } from "vue";
-import { onBeforeRouteLeave } from "vue-router";
 
-const radioValue = ref(null);
-const index = "2";
-const valueA = ref("StronglyYY Agree");
-const valueB = ref("Agree");
-const valueC = ref("Disagree");
-const valueD = ref("Strongly Disagree");
-
-const { data, isLoading, error } = useAxios("http://localhost:5000/survey/1");
-onMounted(() => {});
+const { data, isLoading, isFinished, error } = useAxios(
+  "http://localhost:5000/survey/1"
+);
 </script>
 
 <style scoped lang="scss">

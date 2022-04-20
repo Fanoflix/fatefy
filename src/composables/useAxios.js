@@ -1,7 +1,7 @@
 import { ref, shallowRef } from "vue";
 import axios from "axios";
 
-export const useAxios = (url, config = {}) => {
+export const useAxios = (url = null, config = {}) => {
   const data = ref(null);
   const response = ref(null);
   const isLoading = ref(false);
@@ -22,12 +22,12 @@ export const useAxios = (url, config = {}) => {
   const fetch = async () => {
     loading(true);
     try {
-      const result = await axios.request({
+      const apiResponse = await axios.request({
         url,
         ...config,
       });
-      response.value = result;
-      data.value = result.data;
+      response.value = apiResponse;
+      data.value = apiResponse.data;
     } catch (err) {
       error.value = err;
     } finally {
@@ -36,6 +36,5 @@ export const useAxios = (url, config = {}) => {
   };
 
   !config.skip && fetch();
-
-  return { response, error, data, isLoading, isFinished, fetch };
+  return { response, data, error, isLoading, isFinished, fetch };
 };

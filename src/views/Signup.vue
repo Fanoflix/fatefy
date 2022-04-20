@@ -59,6 +59,7 @@
           type="textarea"
           label="A little bit about you (optional)"
           rounded
+          scale="y"
           size="md"
         />
       </div>

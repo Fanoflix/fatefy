@@ -1,5 +1,10 @@
 <template>
-  <section class="quiz" v-if="isFinished">
+  <section class="questionnaire" v-if="isFinished && !error">
+    <!-- v-if="error" fetching the survey, then show an error card -->
+    <!-- v-if="isLoading" then show a spinner -->
+    <!-- v-if="isFinished" -->
+
+    <!-- <pre>{{ data }}</pre> -->
     <FContainer
       class="question"
       padding="1"
@@ -14,7 +19,8 @@
           :name="question.id"
           v-for="choice in question.questionChoices"
           :key="choice.id"
-          :native-value="choice.id"
+          v-model="question.answerChoiceText"
+          :native-value="choice.choiceText"
         >
           {{ choice.choiceText }}
         </FRadio>
@@ -26,35 +32,53 @@
             question.subtext ? `Required. ${question.subtext}` : 'Required'
           "
           :type="question.type"
+          v-model="question.answerText"
           scale="y"
-          size="md"
+          size="sm"
           :required="question.required"
         />
       </span>
     </FContainer>
 
-    <br /><br />
+    <FButton
+      label="Submit Response"
+      size="md"
+      @click.prevent="submit"
+    ></FButton>
   </section>
 </template>
 
 <script setup>
-import FRadio from "../components/radio/FRadio.vue";
 import FContainer from "../components/container/FContainer.vue";
+import FRadio from "../components/radio/FRadio.vue";
 import FInput from "../components/input/FInput.vue";
-import { useAxios } from "@/composables/useAxios.js";
+import FButton from "../components/button/FButton.vue";
+import processRequest from "../utils/processRequest.js";
 
-const { data, isLoading, isFinished, error } = useAxios(
-  "http://localhost:5000/survey/1"
-);
+import { useAxios } from "@/composables/useAxios.js";
+import { onMounted, ref, reactive, nextTick } from "vue";
+
+const url = "http://localhost:5000";
+const { data, isLoading, error, isFinished } = useAxios(`${url}/survey/1`);
+
+function submit() {
+  processRequest("response", "post", data.value).then((res) => {
+    console.log(res);
+  });
+}
 </script>
 
 <style scoped lang="scss">
 @import "@/assets/variables.scss";
-.quiz {
+.questionnaire {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: $global-center-content-width;
+
+  pre {
+    font-size: 10px;
+  }
 
   .question {
     margin-bottom: 15px;

@@ -370,8 +370,8 @@ export default {
 
   .input {
     &.sm {
-      height: 28px;
-      font-size: 14px;
+      height: 34px;
+      font-size: 13px;
     }
 
     &.md {
@@ -380,8 +380,8 @@ export default {
     }
 
     &.lg {
-      height: 62px;
-      font-size: 28px;
+      height: 58px;
+      font-size: 24px;
       font-weight: 200;
     }
   }
